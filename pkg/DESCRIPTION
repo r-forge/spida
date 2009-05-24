@@ -8,8 +8,8 @@ Maintainer: Georges Monette <georges@yorku.ca>
 Description: Collection of utility functions for mixed models including
    wald:  Wald test with functions to generate hypothesis matrices
    gsp:   general spline with any degree and smoothness with additional
-          function 'sc' to contruct hypotheses, smsp - easy smoothing splines
-          with lme and nlme
+          function 'sc' to contruct hypotheses, 
+   smsp:  tool for smoothing splines with lme and nlme based on lmeSplines
    capply: create contextual variables. Also: cvar, dvar, up
    Misc:  vif.lme, xqplot, tab, panel.subgroups (additional level of subgroups in xyplot) 
 Depends: nlme, lattice, car, MASS
