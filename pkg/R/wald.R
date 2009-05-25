@@ -110,7 +110,7 @@ wald:  General Linear Hypothesis with Wald test
                   disp(L)
                }
                ## Delete coefficients that are NA
-               L <- L[, !is.na(beta)]
+               L <- L[, !is.na(beta),drop = F]
                beta <- beta[ !is.na(beta) ]
                
                ## Anova
@@ -120,14 +120,21 @@ wald:  General Linear Hypothesis with Wald test
                    L.rank <- qqr$rank
                    #L.rank <- attr(Qqr,'rank')
                    #L.miss <- attr(Qqr,'miss')
+                   if(debug)disp( t( qr.Q(qqr)))
                    L.full <- t(qr.Q(qqr))[ 1:L.rank,,drop=F]
                    #L.full <- t(Qqr[!L.miss,])[ 1:L.rank,,drop=F]
                } else if ( method == 'svd' ) {
+                   if(debug)disp( t(na.omit(t(L))))
                    sv <- svd( t(na.omit(t(L))) , nu = 0 )
+                   if(debug)disp( sv )
                    tol.fac <- max( dim(L) ) * max( sv$d )
+                   if(debug)disp( tol.fac )
                    if ( tol.fac > 1e6 ) warning( "Poorly conditioned L matrix, calculated numDF may be incorrect")
                    tol <- tol.fac * .Machine$double.eps
+                   if(debug)disp( tol )
                    L.rank <- sum( sv$d > tol )
+                   if(debug)disp( L.rank )
+                   if(debug)disp( t(sv$v))
                    L.full <- t(sv$v)[seq_len(L.rank),,drop = FALSE]
                } else stop("method not implemented: choose 'svd' or 'qr'")
                
@@ -249,7 +256,8 @@ print.wald <- function(x,round = 6, pround = 5,...) {
 }
 
 
-as.data.frame.wald <- function( obj, se , digits = 3 , sep = "" ) {
+as.data.frame.wald <- function( obj, se , digits = 3 , sep = "" , which = 1 ) {
+         obj = obj [which]
          if ( length(obj) == 1) {
 
             cf <- obj[[1]]$coef

@@ -3977,7 +3977,7 @@ stack <- function(...) {
 #####  anova.lme
 #####
 
-anova.lme <- function (object, ..., test = TRUE, type = c("sequential", "marginal"),
+xanova.lme <- function (object, ..., test = TRUE, type = c("sequential", "marginal"),
     adjustSigma = TRUE, Terms, L, verbose = FALSE)
 {
     warning("This is a modified version of anova.lme that uses min dfs for the denominator")
