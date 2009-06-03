@@ -567,8 +567,7 @@ function (mod)
 
 
 td <- function(
-        new = F,
-	# col=c(1,3,5,4,6,8,2),
+    new = F,
     col=c("#0080ff",   "#ff00ff",   "darkgreen", "#ff0000" ,  "orange" ,   "#00ff00",   "brown" ),
     lty=1:7, lwd=1,
 	pch = 1:7, cex = 0.8, font = 1,
@@ -580,7 +579,7 @@ td <- function(
 	alpha.symbol = alpha,
 	len = 7,
 	long = F,
-        record = T,
+        record = FALSE,
         basecol = NULL,
 	colsets = c('plot.symbol','plot.line','dot.symbol',
 			'dot.line','cloud.3d','box.dot'),...) {
@@ -610,7 +609,7 @@ Usage:
 	 pch = 1:7, cex = 0.8, font = 1,
 	 len = 7,
 	 long = F,
-         record = T,
+         record = FALSE,
          basecol = NULL,
 	 colsets = c('plot.symbol','plot.line','dot.symbol',
 			'dot.line','cloud.3d','box.dot'),...)
@@ -689,7 +688,8 @@ Modifications:
       trellis.par.set(ii,tt)
     }
   }
-  invisible(attr(.Device,"trellis.settings"))
+  ret <- trellis.par.get()
+  invisible(ret[grep('superpose',names(ret))])
 }
 
 
@@ -776,7 +776,31 @@ Modifications:
 "
   ## Adapted from myplot.data.frame for R by G. Monette, Oct. 25, 2004
   ##    maxlab is maximum number of labels
-  if (! is.list(x)) x <- as.data.frame(x) 
+  # Turn matrices into variables:
+    if (! is.list(x)) x <- as.data.frame(x)
+  
+  if ( any ( sapply( x, class) == 'matrix') ) {
+       zz <- list()
+       for ( ii in seq_along( x )) {
+           if ( is.matrix( x[[ii]])) {
+                  if ( is.null (colnames( x[[ii]]))) {
+                        cnames <- paste( names(x)[ii], 1:ncol(x[[ii]]), sep ='.')
+                  } else {
+                         cnames <- paste( names(x)[ii], colnames(x[[ii]]), sep = '.')
+                  }
+                  for ( jj in seq_len( ncol ( x[[ii]]))) {
+                       zz[[cnames[jj] ]] <- x[[ii]][,jj]
+                  }
+
+           } else {
+               zz[[ names(x)[[ii]] ]] <- x[[ii]]
+           }
+          }
+          x <- as.data.frame(zz)
+          #disp( x )
+  }
+  
+
   left.labs <- rep( left.labs, length = length(x))
   findmfrow <- function( x ) {
 	   if ( x > 9) c(3,4)
@@ -1465,7 +1489,7 @@ cell <- function( ... )  {
 }
 
 
-cell.glh <-
+cell.wald <-
  function (obj, which.coef = 1:2, levels = 0.95, Scheffe = FALSE, dfn = 2,
     center.pch = 19, center.cex = 1.5, segments = 51, xlab, ylab,
     las = par("las"), col = palette()[2], lwd = 2, lty = 1,
@@ -3712,6 +3736,8 @@ help <- "
           create attribute that identifies extent to which a variable is 'varying'
 
 "
+
+
     if (!inherits(object, "data.frame")) {
         stop("Object must inherit from data.frame")
     }
@@ -3729,8 +3755,11 @@ help <- "
     row.names(value) <- as.character(gunique)
     value <- value[as.character(sort(gunique)), , drop = FALSE]
     varying <- unlist(lapply(object, function(column, frst) {
-        aux <- as.character(column)
-        any(!identical(aux, aux[frst]))
+        aux <- column
+        if( is.matrix( aux))aux[] <- as.character( aux )
+        else aux <- as.character(aux)
+        if ( is.matrix( aux )) any(!identical( aux, aux[frst,]))
+        else any(!identical(aux, aux[frst]))
     }, frst = asFirst))
     if (any(varying) && (!invariantsOnly)) {
         Mode <- function(x) {
@@ -3757,8 +3786,19 @@ help <- "
                 "factor"
             else mode(object[[nm]])
             if (dClass == "numeric") {
+               if( is.matrix ( object[[nm]])){
+                 zmat <- object[[nm]]
+                 ret <- list()
+                 for ( jj in seq_len(ncol(zmat))) {
+                     ret[[jj]] <- as.vector( tapply( zmat[,jj],
+                               groups, FUN[['numeric']],...))
+                 }
+                 value[[nm]] <- do.call(cbind, ret)
+
+               } else {
                 value[[nm]] <- as.vector(tapply(object[[nm]],
                   groups, FUN[["numeric"]], ...))
+                }
             }
             else {
                 value[[nm]] <- as.vector(tapply(as.character(object[[nm]]),

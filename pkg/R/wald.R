@@ -110,7 +110,9 @@ wald:  General Linear Hypothesis with Wald test
                   disp(L)
                }
                ## Delete coefficients that are NA
+               Ldata <- attr( L , 'data')
                L <- L[, !is.na(beta),drop = F]
+               attr(L,'data') <- Ldata
                beta <- beta[ !is.na(beta) ]
                
                ## Anova
@@ -215,6 +217,7 @@ wald:  General Linear Hypothesis with Wald test
              ret[[ii]]$se <- etasd
              ret[[ii]]$L.full <- L.full
              ret[[ii]]$L.rank <- L.rank
+             if( debug ) disp(attr(L,'data'))
              ret[[ii]]$data <- attr(L,'data')
         }
         names(ret) <- names(Llist)
@@ -404,7 +407,7 @@ Lform(fit, list( 'a:b'= 0, b=1, a, a*c, a*(f=='a')), list( a = 1:4, c = 11:14, f
 
 
 
-Lmat <- function(fit, pattern, fixed = FALSE, invert = FALSE) {
+Lmat <- function(fit, pattern, fixed = FALSE, invert = FALSE, debug = FALSE) {
      # pattern can be a character used as a regular expression in grep
      # or a list with each component generating  a row of the matrix
      umatch <- function( pat, x ) {
@@ -432,6 +435,7 @@ Lmat <- function(fit, pattern, fixed = FALSE, invert = FALSE) {
      if (is.character(pattern)) {
         L.indices <- grep(pattern,names(fe))
         ret <- diag( length(fe)) [L.indices,,drop = F]
+        if (debug) disp(ret)
         rownames(ret) <- names(fe) [L.indices]
         labs(ret) <- "Coefficients"
      } else if (is.list(pattern)){

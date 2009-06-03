@@ -3,10 +3,11 @@
 \alias{td}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+Set lattice parameters for multiple groups
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+Designed to easily sets lattice parameters for multiple groups. Setting parameters
+before calling the lattice function allows parameters to be used consistently in the group key.
 }
 \usage{
 td(new = F, col = c("#0080ff", "#ff00ff", "darkgreen", "#ff0000", "orange", "#00ff00", "brown"), lty = 1:7, lwd = 1, pch = 1:7, cex = 0.8, font = 1, fill = "transparent", col.line = col, col.symbol = col, alpha = 1, alpha.line = alpha, alpha.symbol = alpha, len = 7, long = F, record = T, basecol = NULL, colsets = c("plot.symbol", "plot.line", "dot.symbol", "dot.line", "cloud.3d", "box.dot"), ...)
@@ -14,6 +15,7 @@ td(new = F, col = c("#0080ff", "#ff00ff", "darkgreen", "#ff0000", "orange", "#00
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{new}{
+If new = TRUE, open a new window, otherwise modify the existing active window, if there is one.
 %%     ~~Describe \code{new} here~~
 }
   \item{col}{
@@ -50,15 +52,20 @@ td(new = F, col = c("#0080ff", "#ff00ff", "darkgreen", "#ff0000", "orange", "#00
 %%     ~~Describe \code{alpha.line} here~~
 }
   \item{alpha.symbol}{
+graphical parameters for superpose.line and superpose.symbol
 %%     ~~Describe \code{alpha.symbol} here~~
 }
   \item{len}{
+extend the length of parameters by recycling to lenght 'len'
 %%     ~~Describe \code{len} here~~
 }
   \item{long}{
+  if TRUE generate a default combination of col, lty and pch with length 42.
 %%     ~~Describe \code{long} here~~
 }
   \item{record}{
+  If TRUE, set history to 'recording'. Caution: this can use a lot of memory in .GlobalEnv.
+  Consider adding selected graphs to memory with the 'Insert' key instead.
 %%     ~~Describe \code{record} here~~
 }
   \item{basecol}{
@@ -72,6 +79,9 @@ td(new = F, col = c("#0080ff", "#ff00ff", "darkgreen", "#ff0000", "orange", "#00
 }
 }
 \details{
+'td' calls 'trellis.device' and sets graphical parameters for
+'superpose.line' and 'superpose.symbol'. 'td' also initializes
+a new trellis device with a white background if new = TRUE.
 %%  ~~ If necessary, more details than the description above ~~
 }
 \value{

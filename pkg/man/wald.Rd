@@ -104,8 +104,9 @@ General Linear Hypothesis with Wald test
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 \seealso{
-\code{\link{Lmat}},\code{\link{Lmat}},\code{\link{Lmat}},\code{\link{Lform}},
-\code{\link{Ldiff}},\code{\link{Lmu}},\code{\link{as.data.frame.wald}}. To extend to
+\code{\link{Lall}},\code{\link{Lc}},\code{\link{Lequal}},\code{\link{Lform}},
+\code{\link{Ldiff}},\code{\link{Lmu}},\code{\link{Lmat}},\code{\link{Lrm}},
+\code{\link{as.data.frame.wald}}. To extend to
 new models see \code{\link{getFix}}. To generate
 hypothesis matrices for general splines see \code{\link{gsp}} and \code{\link{sc}}.
 %% ~~objects to See Also as \code{\link{help}}, ~~~
