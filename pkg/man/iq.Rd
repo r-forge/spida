@@ -1,6 +1,7 @@
 \name{iq}
 \Rdversion{1.1}
 \alias{iq}
+\alias{iqsim}
 \concept{spida 2009}
 \concept{longitudinal}
 \concept{non-linear models}
@@ -26,6 +27,8 @@ verbal and performance IQ of patients recovering from coma after traumatic brain
   }
 }
 \details{
+\code{iq} is a subset of the original data, \code{iqsim} is simulated set of 10 hypothetical
+observations on one subject.
 %%  ~~ If necessary, more details than the __description__ above ~~
 }
 \source{
