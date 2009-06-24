@@ -996,7 +996,7 @@ sp(age)D1(0):Gmale    0.058384   0.078012   0.748    0.456
 sp(age)C(10).2:Gmale -0.010556   0.009773  -1.080    0.283
 sp(age)C(25).2:Gmale  0.026410   0.018216   1.450    0.150
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
 
 Residual standard error: 1.224 on 92 degrees of freedom
 Multiple R-squared: 0.0814,     Adjusted R-squared: 0.0115
