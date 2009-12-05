@@ -50,6 +50,7 @@ deficiency.
             reported in Diggle et al. (2002)
             'Analysis of Longitudinal Data', 2nd ed.
             See: Zeger and Karim, JASA (1991)
+}
 \references{
 %%  ~~ possibly secondary sources and usages ~~
 }

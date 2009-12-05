@@ -1,9 +1,8 @@
 \name{LagI}
 \Rdversion{1.1}
 \alias{LagI}
-Lag with respect to time within id with interpolation for non-integer time
 \title{
-%%  ~~function to do ... ~~
+Lag with respect to time within id with interpolation for non-integer time
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
@@ -14,22 +13,22 @@ LagI(x, id, time, lag = 1, delta = 0.01, check = T)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
-%%     ~~Describe \code{x} here~~
+the values to be lagged.
 }
   \item{id}{
-%%     ~~Describe \code{id} here~~
+values are lagged within each level of id
 }
   \item{time}{
-%%     ~~Describe \code{time} here~~
+measure of time used for lagging
 }
   \item{lag}{
-%%     ~~Describe \code{lag} here~~
+distance to lag: e.g. -1 takes the value of \code{x} 1 unit of \code{time} in the past.
 }
   \item{delta}{
-%%     ~~Describe \code{delta} here~~
+increment used for extrapolation
 }
   \item{check}{
-%%     ~~Describe \code{check} here~~
+uniqueness of \code{id}/\code{time} combinations
 }
 }
 \details{

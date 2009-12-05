@@ -8,11 +8,12 @@ Collection of utility functions for mixed models, etc. for SPIDA 2009
 }
 \description{
 Collection of utility functions for mixed models including
-\item{wald:}{Wald test with functions to generate hypothesis matrices}
-\item{gsp:}{general spline with any degree and smoothness with additional function 'sc' to contruct hypotheses, smsp - easy smoothing splines with lme and nlme}
-\item{capply:}{  create contextual variables. Also: cvar, dvar, up }
-\item{Plot3d:}{ interface to 'rgl' to show fitted surfaces}
-\item{Misc:}{ vif.lme  \cr xqplot \cr tab    \cr panel.subgroups (additional level of subgroups in xyplot}
+\tabular{ll}{
+wald: \tab Wald test with functions to generate hypothesis matrices\cr
+gsp: \tab general spline with any degree and smoothness with additional function 'sc' to contruct hypotheses, smsp - easy smoothing splines with lme and nlme \cr
+capply: \tab   create contextual variables. Also: cvar, dvar, up  \cr
+Misc: \tab  vif.lme; xqplot; tab; panel.subgroups (additional level of subgroups in xyplot) \cr
+}
 }
 \details{
 \tabular{ll}{
@@ -220,7 +221,6 @@ Georges Monette <georges@yorku.ca>
 \references{
 ~~ Literature or other references for background information ~~
 }
-~~ Optionally other standard keywords, one per line, from file KEYWORDS in the R documentation directory ~~
 \keyword{ package }
 \seealso{
 ~~ Optional links to other man pages, e.g. ~~

@@ -1,23 +1,23 @@
-\name{%or%}
+\name{[.data.frame.lab}
 \Rdversion{1.1}
-\alias{%or%}
+\alias{[.data.frame.lab}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+Selection of a labelled data.frame
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-%or%(a, b)
+[.data.frame.lab(x, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{a}{
-%%     ~~Describe \code{a} here~~
+  \item{x}{
+%%     ~~Describe \code{x} here~~
 }
-  \item{b}{
-%%     ~~Describe \code{b} here~~
+  \item{\dots}{
+%%     ~~Describe \code{\dots} here~~
 }
 }
 \details{
@@ -51,8 +51,14 @@
 ##--	or do  help(data=index)  for the standard data sets.
 
 ## The function is currently defined as
-function (a, b) 
-union(a, b)
+function (x, ...) 
+{
+    lab <- labs(x)
+    ret <- get("[.data.frame")(x, ...)
+    if (inherits(ret, "data.frame")) 
+        labs(ret) <- lab
+    ret
+  }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

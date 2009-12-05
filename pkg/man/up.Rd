@@ -44,7 +44,7 @@ additional arguments to \code{tapply} when summarizing numerical variables. e.g.
 }
 \details{
 \code{up} was created from \code{nlme::gsummary} and modified to make it easier to
-use and to make an equivalent of \code{gsummary} available when using \package{lme4}.
+use and to make an equivalent of \code{gsummary} available when using \code{lme4}.
 }
 \value{
 a data frame with one row per value of the variable in \code{form}

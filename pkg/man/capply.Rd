@@ -38,13 +38,13 @@ dvar( x, by, ... )
   \item{x}{ a vector or data frame that provides the first argument of \code{FUN}
 %%     ~~Describe \code{x} here~~
 }
-  \item{by} {
+  \item{by}{
             If \code{x} is a vector: a 'factor' of the same lenth as \code{x} whose
             levels identify clusters.
             If \code{x} is a data frame, a one-sided formula that identifies the variable(s)
             within \code{x} to be used to identify clusters.
   }
-  \item{FUN} { a function to be applied to \code{x} within each cluster. \code{FUN} can return a
+  \item{FUN}{ a function to be applied to \code{x} within each cluster. \code{FUN} can return a
     single value, or a vector whose length is equal to the number of elements in each cluster.
   }
   \item{\dots}{  additional variables to be supplied to \code{FUN}

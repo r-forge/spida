@@ -1,15 +1,17 @@
-\name{%less%}
+\name{%and%}
 \Rdversion{1.1}
+\alias{%and%}
 \alias{%less%}
+\alias{%or%}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+Set operators
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+Set operations written as binary operators
 }
 \usage{
-%less%(a, b)
+%and%(a, b)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -52,7 +54,7 @@
 
 ## The function is currently defined as
 function (a, b) 
-setdiff(a, b)
+intersect(a, b)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
