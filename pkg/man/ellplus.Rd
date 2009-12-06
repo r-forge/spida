@@ -8,8 +8,6 @@ Ellipse with additional features
 \description{
 Ellipse with additional features such as center, axes, subtending parallelogram.
 }
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
-}
 \usage{
 ellplus(center = rep(0, 2), shape = diag(2), radius = 1, n = 100, angles = (0:n) * 2 * pi/n, fac = chol, ellipse = all, diameters = all, box = all, all = F)
 }

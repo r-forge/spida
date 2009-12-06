@@ -7,8 +7,7 @@
 \concept{dichtomous response}
 \docType{data}
 \title{
-Respiratory infections among Indonesian children. Longitudinal observational study
-with no treatment
+Respiratory infections among Indonesian children. Longitudinal observational study with no treatment 
 }
 \description{
 275 preschool children in Indonesia were

@@ -3,7 +3,7 @@
 \alias{diags}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+Generic diagnostics
 }
 \description{
 Generic diagnostics

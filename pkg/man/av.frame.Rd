@@ -13,7 +13,6 @@ plot
 
 The purpose of this function is to facilitate OLS av.plots
 for mixed models.
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
 av.frame(model, ...)
@@ -46,9 +45,6 @@ av.frame(model, ...)
 \note{
 %%  ~~further notes~~
 }
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
 \seealso{
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
@@ -87,14 +83,6 @@ av.frame(model, ...)
 ## The function is currently defined as
 function (model, ...) 
 {
-
-n
-n
-n
-n       Example:
-n
-
-n"
     UseMethod("av.frame")
   }
 }

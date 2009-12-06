@@ -3,7 +3,7 @@
 \alias{diags.lm}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+Standard diagnostics for lm objects
 }
 \description{
 Standard diagnostics for lm objects
