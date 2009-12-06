@@ -3,7 +3,7 @@
 \alias{labs.default}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+Add labels -- default
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~

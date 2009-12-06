@@ -3,7 +3,7 @@
 \alias{na.fitted}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+Fitted values with NAs
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~

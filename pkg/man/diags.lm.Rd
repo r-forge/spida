@@ -6,7 +6,7 @@
 %%  ~~function to do ... ~~
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+Standard diagnostics for lm objects
 }
 \usage{
 diags.lm(x, y, ..., ask, labels = names(residuals(x)), showlabs = text)

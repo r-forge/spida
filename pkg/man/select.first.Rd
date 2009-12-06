@@ -3,9 +3,10 @@
 \alias{select.first}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+Find the first non-missing element of a vector and check whether there are other inconsistent non-missing values
 }
 \description{
+Find the first non-missing element of a vector and check whether there are other inconsistent non-missing values
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{

@@ -3,9 +3,16 @@
 \alias{av.frame}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+Create data frame for added variable plot
 }
 \description{
+av.frame( model, variable)
+returns a data frame with model.frame(model) augmented
+by y.res and x.res, the residuals for an added variable
+plot
+
+The purpose of this function is to facilitate OLS av.plots
+for mixed models.
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
@@ -49,11 +56,45 @@ av.frame(model, ...)
 ##---- Should be DIRECTLY executable !! ----
 ##-- ==>  Define data, use random,
 ##--	or do  help(data=index)  for the standard data sets.
+       library(nlme)
+       library(lattice)
+       hs <- read.csv( 'http://www.math.yorku.ca/~georges/Data/hs.csv')
+
+       # Mixed model where ses and Sex are Level 1 and Sector is Level 2
+
+       fit.mm <- lme( mathach ~ ses * Sex * Sector, hs, random = ~ 1+ses| school)
+
+       # for diagnostics fit an OLS model using only level 1 variables interacting
+       # with the id variable
+
+       fit.ols <- lm( mathach ~ (ses * Sex ) * factor(school), hs)
+       xyplot( y.res ~ x.res | factor(school), cbind(av.frame(fit.ols, 'ses:Sex'),hs), sub = 'ses:Sex')
+       xyplot( y.res ~ x.res | factor(school), cbind(av.frame(fit.ols, '^Sex'),hs), sub = 'Sex')
+       xyplot( y.res ~ x.res | factor(school), cbind(av.frame(fit.ols, '^ses$|^ses:f'),hs), sub = 'ses')
+
+
+       Note : y.res is the residual from fitting the response on
+              the model matrix for fit.ols omitting any column
+              whose names is matched (as a regular expression)
+              by 'effect'
+              x.res is the residual of the first column of the
+              model matrix that is matched by 'effect' on the
+              same matrix used for y.res.
+       Caution: To make sure that the correct columns were
+              matched, the list of matched columns that are omitted
+              is printed.
 
 ## The function is currently defined as
 function (model, ...) 
 {
-    help <- "\n       av.frame( model, variable)\n       returns a data frame with model.frame(model) augmented\n       by y.res and x.res, the residuals for an added variable\n       plot\n       \n       The purpose of this function is to facilitate OLS av.plots\n       for mixed models.\n\n\n\n       Example:\n\n       library(nlme)\n       library(lattice)\n       hs <- read.csv( 'http://www.math.yorku.ca/~georges/Data/hs.csv')\n       \n       # Mixed model where ses and Sex are Level 1 and Sector is Level 2\n       \n       fit.mm <- lme( mathach ~ ses * Sex * Sector, hs, random = ~ 1+ses| school)\n\n       # for diagnostics fit an OLS model using only level 1 variables interacting\n       # with the id variable\n\n       fit.ols <- lm( mathach ~ (ses * Sex ) * factor(school), hs)\n       xyplot( y.res ~ x.res | factor(school), cbind(av.frame(fit.ols, 'ses:Sex'),hs), sub = 'ses:Sex')\n       xyplot( y.res ~ x.res | factor(school), cbind(av.frame(fit.ols, '^Sex'),hs), sub = 'Sex')\n       xyplot( y.res ~ x.res | factor(school), cbind(av.frame(fit.ols, '^ses$|^ses:f'),hs), sub = 'ses')\n\n       \n       Note : y.res is the residual from fitting the response on\n              the model matrix for fit.ols omitting any column\n              whose names is matched (as a regular expression)\n              by 'effect'\n              x.res is the residual of the first column of the\n              model matrix that is matched by 'effect' on the\n              same matrix used for y.res.\n       Caution: To make sure that the correct columns were\n              matched, the list of matched columns that are omitted\n              is printed.\n\n"
+
+n
+n
+n
+n       Example:
+n
+
+n"
     UseMethod("av.frame")
   }
 }

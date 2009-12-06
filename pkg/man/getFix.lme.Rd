@@ -4,6 +4,7 @@
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 %%  ~~function to do ... ~~
+Get information on fixed effects from an lme object
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~

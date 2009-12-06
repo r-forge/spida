@@ -3,7 +3,7 @@
 \alias{tran}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+Translate elements of a vector
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~

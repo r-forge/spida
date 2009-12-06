@@ -3,7 +3,7 @@
 \alias{print.data.frame.lab}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+Print a labeled data frame
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~

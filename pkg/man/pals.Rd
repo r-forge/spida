@@ -3,7 +3,7 @@
 \alias{pals}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+Display colors n at a time
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~

@@ -3,7 +3,7 @@
 \alias{Write.spss}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+Write and SPSS file
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~

@@ -3,7 +3,7 @@
 \alias{acond}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+Transform a frequency table into relative frequencies relative to a margin.
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~

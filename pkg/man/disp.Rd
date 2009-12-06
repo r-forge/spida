@@ -3,9 +3,10 @@
 \alias{disp}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+Display the name and value of an object
 }
 \description{
+Display the name and value of an object, useful for debugging
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{

@@ -3,7 +3,7 @@
 \alias{grepv}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+Grep with value = T
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~

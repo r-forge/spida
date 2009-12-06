@@ -3,7 +3,7 @@
 \alias{trim}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+Trim trailing blanks
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
@@ -50,7 +50,7 @@ trim(x)
 ## The function is currently defined as
 function (x) 
 {
-    help <- "\ntrim in fun.R\n  removes trailing blanks from character variables or from\n  factor levels\n  Use mainly to trim .dta files produced with SPSS\n"
+trim in fun.R
     UseMethod("trim")
   }
 }

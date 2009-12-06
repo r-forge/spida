@@ -3,7 +3,7 @@
 \alias{oplot}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+Indicate number of points overplotted
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~

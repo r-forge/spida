@@ -3,7 +3,7 @@
 \alias{as.data.frame.wald}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+Transform output of a Wald test into a data frame
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~

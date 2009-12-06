@@ -3,6 +3,7 @@
 \alias{tfun}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
+Utility function
 %%  ~~function to do ... ~~
 }
 \description{

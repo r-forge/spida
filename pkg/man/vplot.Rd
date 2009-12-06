@@ -3,7 +3,7 @@
 \alias{vplot}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+Collection of functions to help teach matrix geometry in 2 dimensions
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
@@ -33,6 +33,24 @@ vplot(mat, type = "p", new = F, pch = 16, pop = 0, ...)
 }
 }
 \details{
+vplot    - plots the columns of a 2 x n matrix or a vector of length 2
+         - vplot adds to the current plot resizing it to include all plotted
+           objects in a 'euclidean' frame
+         - to start a new plot, use 'new = T'
+         - to remove the last element added use 'vplot(pop=1)'
+         Associated functions:
+         - vell( mean, var) generates an ellipse, default = unit circle
+         - vbox() generates a box
+         - vobj() generates a circle in a box
+         - orthog(theta) generates an orthog matrix rotating through angle theta
+         - orthog.proj generates the matrix of an orthog. projection into span (x)
+         - vmat( .... ) generates a 2 by n matrix
+         Examples:
+           vplot( new = T )
+           vplot( vell(), 'l' )
+           vplot( cbind(c(3,1),c(1,4)) \%*\% vell())
+           vplot( pop = 1)
+           vplot( cbind(c(3,1),c(1,4)) \%*\% vell(), type = 'l', col = 'red')
 %%  ~~ If necessary, more details than the description above ~~
 }
 \value{
@@ -65,7 +83,8 @@ vplot(mat, type = "p", new = F, pch = 16, pop = 0, ...)
 ## The function is currently defined as
 function (mat, type = "p", new = F, pch = 16, pop = 0, ...) 
 {
-    help <- "\nvplot    - plots the columns of a 2 x n matrix or a vector of length 2\n         - vplot adds to the current plot resizing it to include all plotted\n           objects in a 'euclidean' frame\n         - to start a new plot, use 'new = T'\n         - to remove the last element added use 'vplot(pop=1)'\n         Associated functions:\n         - vell( mean, var) generates an ellipse, default = unit circle\n         - vbox() generates a box\n         - vobj() generates a circle in a box\n         - orthog(theta) generates an orthog matrix rotating through angle theta\n         - orthog.proj generates the matrix of an orthog. projection into span (x)\n         - vmat( .... ) generates a 2 by n matrix\n         Examples:\n           vplot( new = T )\n           vplot( vell(), 'l' )\n           vplot( cbind(c(3,1),c(1,4)) \%*\% vell())\n           vplot( pop = 1)\n           vplot( cbind(c(3,1),c(1,4)) \%*\% vell(), type = 'l', col = 'red')\n"
+
+
     if (new || !exists(".vplot")) 
         assign(".vplot", list(list(x = 0, y = 0, type = "n")), 
             pos = 1)

@@ -3,7 +3,7 @@
 \alias{av.frame.lm}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+lm method for av.frame
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~

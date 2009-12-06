@@ -3,6 +3,7 @@
 \alias{constant.data.frame}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
+Identify variables that are constant within levels of a factor
 %%  ~~function to do ... ~~
 }
 \description{

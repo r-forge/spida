@@ -3,7 +3,7 @@
 \alias{varLevel}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+Identify level of aggregation at which a variable in invariant
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~

@@ -3,7 +3,7 @@
 \alias{predict.mer}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+A tentative version of predict for mer objects
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~

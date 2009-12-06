@@ -3,7 +3,7 @@
 \alias{glh}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+General linear hypothesis -- now deprecated -- use wald instead
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~

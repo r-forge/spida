@@ -3,7 +3,7 @@
 \alias{fill.Date}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+Create a time-invariant variable by filling in NAs
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~

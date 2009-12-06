@@ -3,7 +3,7 @@
 \alias{fill.default}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+Default method to fill in values of time-invariant variable
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~

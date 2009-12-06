@@ -3,10 +3,10 @@
 \alias{Contrasts}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+Generic function to extend 'contrasts' to 'lmer' objects.
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+Generic function to extend 'contrasts' to 'lmer' objects.
 }
 \usage{
 Contrasts(x)

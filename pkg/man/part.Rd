@@ -3,7 +3,7 @@
 \alias{part}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+Intersection and symmetric differences of two sets
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~

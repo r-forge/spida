@@ -3,7 +3,7 @@
 \alias{vell}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+Vector around an ellipse
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~

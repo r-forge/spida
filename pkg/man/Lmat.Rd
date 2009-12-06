@@ -3,10 +3,12 @@
 \alias{Lmat}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+Generate a hypothesis matrix 
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+Generates a hypothesis matrix to 
+test whether a group of coefficients in a linear model are
+jointly zero, selecting the coefficients that match a regular expression.
 }
 \usage{
 Lmat(fit, pattern)

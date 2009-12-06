@@ -3,7 +3,7 @@
 \alias{cap1}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+Capitalize first character of each word
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~

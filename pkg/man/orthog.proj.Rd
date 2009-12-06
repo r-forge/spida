@@ -3,7 +3,7 @@
 \alias{orthog.proj}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+Orthogonal projection matrix -- check possibly poor numerical behaviour
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~

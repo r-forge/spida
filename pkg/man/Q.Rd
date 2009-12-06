@@ -3,7 +3,7 @@
 \alias{Q}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+Q matrix of QR decomposion with missing data
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~

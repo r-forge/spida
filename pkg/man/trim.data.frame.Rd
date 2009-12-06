@@ -3,7 +3,7 @@
 \alias{trim.data.frame}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+Trim trailing blanks from all variables in a data frame
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~

@@ -3,6 +3,7 @@
 \alias{tab.data.frame}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
+Tab method for data frames
 %%  ~~function to do ... ~~
 }
 \description{

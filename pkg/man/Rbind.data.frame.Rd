@@ -3,7 +3,7 @@
 \alias{Rbind.data.frame}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+Rbind applied to data frames
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~

@@ -3,7 +3,7 @@
 \alias{abind}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+Bind comformable arrays
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
@@ -14,27 +14,33 @@ abind(arr1, arr2, d, facename = "")
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{arr1}{
-%%     ~~Describe \code{arr1} here~~
+first array
 }
   \item{arr2}{
-%%     ~~Describe \code{arr2} here~~
+second array
 }
   \item{d}{
-%%     ~~Describe \code{d} here~~
+dimension along which arr1 and arr2 are joined, or, if the \code{length(dim(arr1)) == length(dim(arr2)) + 1}
+the dimension in arr1 that is exended by arr2.
 }
   \item{facename}{
 %%     ~~Describe \code{facename} here~~
 }
 }
 \details{
-%%  ~~ If necessary, more details than the description above ~~
+abind binds two conformable arrays along a dimension.
+
+dim( arr1 ) and dim( arr2 ) must be equal except in the dth dimension.
+If the length of dim( arr2 ) is 1 less than that of dim( arr1 ), then
+'arr2' is treated as if it had dropped the dth dimension with size 1.
 }
 \value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
+The returned value, ret, is an array with dimension dim(arr1)
+except for the dth dimension where dim(ret)[d] == dim(arr1)[d] + dim(arr2)[d].
+
+If length(dim(arr2)) == length(dim(arr1)) - 1, then arr2 is treated as if
+it dropped a dimension of size 1 in the dth dimension. 'facename' is used
+as the name of the dimnames list for this dimension.
 }
 \references{
 %% ~put references to the literature/web site here ~
@@ -59,7 +65,6 @@ abind(arr1, arr2, d, facename = "")
 ## The function is currently defined as
 function (arr1, arr2, d, facename = "") 
 {
-    help <- "\nabind                coursefun.R     for PSYC 6140/MATH 6630 05/06\n\nBinds two conformable arrays along a dimension\n\nDescription:\n\n     'abind' binds two conformable arrays, arr1 and arr2 along\n     the dimension d.\n\nUsage:\n\n     abind( arr1, arr2 , d ,  facename )\n\nArguments:\n\n     arr1, arr2: arrays, matrices or vectors\n\n       d: dimension along which arr1 and arr2 are joined\n\n     ...: Name of extended index if arr2 has one fewer dimensions than arr1\n\nDetails:\n\n      dim( arr1 ) and dim( arr2 ) must be equal except in the dth dimension.\n      If the length of dim( arr2 ) is 1 less than that of dim( arr1 ), then\n      'arr2' is treated as if it had dropped the dth dimension with size 1.\n\nValue:\n\n     The returned value, ret, is an array with dimension dim(arr1)\n     except for the dth dimension where dim(ret)[d] == dim(arr1)[d] + dim(arr2)[d].\n     If length(dim(arr2)) == length(dim(arr1)) - 1, then arr2 is treated as if\n     it dropped a dimension of size 1 in the dth dimension. 'facename' is used\n     as the name of the dimnames list for this dimension.\n\nNotes:\n\n     abind is used by atotal\n\nReferences:\n\nContributed by:  G. Monette  2005-10-10\n\nModifications:\n\n"
     d1 <- dim(arr1)
     n1 <- length(d1)
     dn1 <- dimnames(arr1)

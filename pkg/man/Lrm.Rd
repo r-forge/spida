@@ -3,10 +3,10 @@
 \alias{Lrm}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+Construct hypothesis matrix to test repeated measures factor effects 
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+Construct hypothesis matrix to test repeated measures factor effects 
 }
 \usage{
 Lrm(fit, nam, vals = 1:nrow(L.mu))

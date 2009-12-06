@@ -6,7 +6,7 @@
 %%  ~~function to do ... ~~
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+Generic diagnostics
 }
 \usage{
 diags(x, ...)

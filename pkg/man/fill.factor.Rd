@@ -3,7 +3,7 @@
 \alias{fill.factor}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+Create time invariant variable by filling in missing values
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~

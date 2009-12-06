@@ -3,7 +3,7 @@
 \alias{glh.rdc}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+Test version of glh in RDC
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~

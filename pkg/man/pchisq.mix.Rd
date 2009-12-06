@@ -3,7 +3,7 @@
 \alias{pchisq.mix}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+P-value for a mixed Chi-Square
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~

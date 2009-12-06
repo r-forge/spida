@@ -3,10 +3,12 @@
 \alias{Proj.1}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
+Projection matrix
 %%  ~~function to do ... ~~
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+Projection matrix into column space of a matrix. Works even if the matrix does 
+not have full column rank.
 }
 \usage{
 Proj.1(x)

@@ -3,7 +3,7 @@
 \alias{write.sas}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+Modified version of write.sas
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~

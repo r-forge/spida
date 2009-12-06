@@ -3,7 +3,7 @@
 \alias{change}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+Replace elements of x with correspondingly named elements of ll
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~

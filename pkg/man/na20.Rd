@@ -3,7 +3,7 @@
 \alias{na20}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+Transform NAs to 0
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~

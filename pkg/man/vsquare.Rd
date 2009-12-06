@@ -3,7 +3,7 @@
 \alias{vsquare}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+Square in 2 dimensions
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~

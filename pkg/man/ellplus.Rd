@@ -3,9 +3,11 @@
 \alias{ellplus}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+Ellipse with additional features
 }
 \description{
+Ellipse with additional features such as center, axes, subtending parallelogram.
+}
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{

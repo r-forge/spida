@@ -3,7 +3,7 @@
 \alias{p}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+p - quick paste with sep = ''
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
