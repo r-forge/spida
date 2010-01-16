@@ -34,7 +34,7 @@ Lform(fit, form, data = model.frame(fit))
       each column of the L matrix
 
       Example:
-
+\code{
       library(car)
       fit <- lm( income ~ (education + I(education^2) )* type, Prestige)
       summary(fit)
@@ -52,6 +52,7 @@ Lform(fit, form, data = model.frame(fit))
        I(education^2):typeprof   1017.5      451.8   2.252  0.02679 *
        I(education^2):typewc      170.9      671.6   0.255  0.79967
       . . .
+}
 %%  ~~ If necessary, more details than the description above ~~
 }
 \value{

@@ -124,7 +124,7 @@ fit <- lme( mathach ~ (ses + I(ses^2)) * Sex, hs, random = ~ 1 + ses | school)
 
 wald( fit, 'Sex')  # sig. overall effect of Sex
 wald( fit, ':Sex') # but no evidence of interaction with ses
-wald( fit, '\\^2') # nor of curvature
+wald( fit, '\\\\^2') # nor of curvature
 
 # but we continue for the sake of illustration
 
