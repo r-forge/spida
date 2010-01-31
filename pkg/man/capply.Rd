@@ -2,6 +2,7 @@
 \Rdversion{1.1}
 \alias{capply}
 \alias{cvar}
+\alias{cvars}
 \alias{dvar}
 \alias{dvar.factor}
 \alias{dvar.default}
@@ -19,10 +20,11 @@
 Apply a function within each cluster of multilevel data
 }
 \description{
-\code{capply} that can be used with vectors as with tapply
-or with data.frames to produce 'contextual variables' computed
-within subgroups of the data and expanded to a constant over
-elements of each subgroup.
+Apply a function to each cell of a ragged array, that is to each (non-empty)
+group of values given by a unique combination of the levels of certain factors
+and, in contrast with \code{tapply}, return within each cell a vector of the
+same length as the cell, which are then ordered to match the positions of the cells
+in the input.
 }
 \usage{
 capply( x, by, FUN, ...)
@@ -52,37 +54,59 @@ dvar( x, by, ... )
 }
 }
 \details{
-Function that can be used with vectors as with tapply
-or with data.frames to produce 'contextual variables' computed
+
+\code{capply} extends the function of \code{tapply(x, by, FUN)[ tapply(x, by) ]}.
+The function \code{FUN} is applied to each cell of \code{x} defined by each value of
+\code{by}. The result in each cell is recycled to a vector of the same length as the cell.
+These vectors are then arranged to match the input \code{x}.  Thus, is the value returned within
+each cell is a scalar, the effect of \code{capply(x, by, FUN)} is the same as
+\code{tapply(x, by, FUN)[ tapply(x, by) ]}.  \code{capply} extends this use of \code{tapply} by
+allowing the the value returned within each cell to be a vector of the same size as the cell.
+}
+\value{
+When the result in each cell is a scalar, \code{capply} can be used to
+for multilevel analysis to produce 'contextual variables' computed
 within subgroups of the data and expanded to a constant over
 elements of each subgroup.
 
-\code{capply( x , by, FUN , ...)} where \code{x} is a vector
-  is equivalent to
+   \code{capply( x , by, FUN , ...)} where \code{x} is a vector
+
+is equivalent to
   
-\code{unsplit ( lapply ( split ( x , by ), FUN, ...), by )}
+   \code{unsplit ( lapply ( split ( x , by ), FUN, ...), by )}
 
-  which has the same effect as
+which has the same effect as
 
-\code{tapply( x, by, FUN, ...) [ tapply( x, by) ]} if FUN returns a vector of length 1.
+   \code{tapply( x, by, FUN, ...) [ tapply( x, by) ]}
+
+if \code{FUN} returns a vector of length 1.
+
 If \code{FUN} returns a vector, it is recycled to the length of the input value.
 
 When the first argument is a data frame:
 
-capply ( dd, by, FUN, ...) uses unsplit - lapply - split
-  to apply \code{FUN} to each sub data frame. In this case, by can
-  be a formula that is evaluated in 'dd'.
+   \code{capply ( dd, by, FUN, ...)}
+
+uses unsplit - lapply - split
+to apply \code{FUN} to each sub data frame. In this case, \code{by} can
+be a formula that is evaluated in 'dd'.
   
-  This syntax makes it easy to compute formulas involving more than one
-  variable in 'dd'. An example:
+This syntax makes it easy to compute formulas involving more than one
+variable in 'dd'. An example:
   
   \code{capply( dd, ~gg, function(x) with( x, mean(Var1) / mean(Var2) ) )}
   
-  where 'Var1' and 'Var2' are numeric variables and 'gg' a grouping factor in
-  data frame 'dd'.
+where 'Var1' and 'Var2' are numeric variables and 'gg' a grouping factor in
+data frame 'dd'.  Or, using the \code{with} function:
 
-\code{cvar} is intended to create contextual variable in model formulas. If 'x' is numerical
-it is equivalent to \code{capply(x,id,mean)}. If 'x' is a factor, 'cvar' generates the
+  \code{capply( dd, ~gg, with , mean(Var1) / mean(Var2) )}
+
+\code{cvar} and \code{cvars} are intended to create contextual variables in model formulas.
+If 'x' is numerical, \code{cvar}
+is equivalent to \code{capply(x,id,mean)} and \code{cvars} is equivalent to
+\code{capply(x,id,sum)}.
+
+If \code{x} is a factor, \code{cvar} generates the
 equivalent of a model matrix for the factor with indicators replaced by the proportion
 within each cluster.
 
@@ -90,8 +114,7 @@ within each cluster.
 a version of 'x' that is 'centered within groups' (CWG).  It creates the correct matrix
 for a factor so that the between group interpretation of the effect of \code{cvar(x,by)}
 is that of the 'between group' or 'compositional' effect of the factor.
-}
-\value{
+
 %%  ~Describe the value returned
 %%  If it is a LIST, use
 %%  \item{comp1 }{Description of 'comp1'}
@@ -105,6 +128,10 @@ is that of the 'between group' or 'compositional' effect of the factor.
 %%  ~~who you are~~
 }
 \note{
+\code{capply} tends to be slow when there are many cells and \code{by}
+is a factor. This may be due to the need to process all factor levels for each cell.
+Turning \code{by} into a numeric or character vector improves speed: e.g.
+\code{capply( x, as.numeric(by), FUN)}.
 %%  ~~further notes~~
 }
 
@@ -125,7 +152,7 @@ is that of the 'between group' or 'compositional' effect of the factor.
      hs$ses.mean <- capply( hs$ses, hs$school, mean, na.rm = T)
      hs$ses.hetero <- capply ( hs$ses, hs$school, sd , na.rm = T)
      hs.summ <- up( hs, ~school )
-     head( summ )   # variables invariant within school
+     head( hs.summ )   # variables invariant within school
      
      # FUN returns a vector
      # with 'x' a data frame

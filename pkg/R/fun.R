@@ -2,6 +2,9 @@
 
 "
 LOG OF CHANGES:
+2010:
+   Jan 30: Added cvars
+
 2009:
    May 8:  Added naresid to model.matrix.lme
    
@@ -1871,45 +1874,16 @@ help <- "
 <pre>
 "
 
-capply <- function ( x ,... ) {
-help="
-capply           June 10, 2006            georges@yorku.ca
-
-Generic function that can be used with vectors as with tapply
-or with data.frames to produce 'contextual variables' computed
-within subgroups of the data and expanded to a constant over
-elements of each subgroup.
-
-capply.default ( x , by, FUN , ...)
-  is
-    unsplit ( lapply ( split ( x , by ), FUN, ...), by )
-  which has the same effect as
-    tapply( x, by, FUN, ...) [ tapply( x, by) ]
-  if FUN returns a vector of length 1.  In general, the value returned
-  by FUN is recycled to the length of the input value.
-  
-capply.data.frame ( dd, by, FUN, ...) uses unsplit - lapply - split
-  to achieve the same thing with a data.frame. In this case, by can
-  be a formula that can be evaluated in 'dd'.  An example:
-     capply( dd, ~gg, function(x) with(x, mean(Var1) / mean(Var2) ) )
-  where 'Var1' and 'Var2' are numeric variables and gg a grouping factor in 
-  data frame 'dd'.
-"
-   UseMethod("capply")
-}
+capply <- function ( x ,... ) UseMethod("capply")
    
- ##  capply.default <- function( x , by, FUN, ... ) {
- ##           ret <- tapply( x, by, FUN, ...) [ tapply( x, by ) ]
- ##           if ( !is.null( dim(ret)) && length(dim(ret)) ==1) ret <- c(ret)
- ##           ret
- ##  }
-
-   capply.default <- function ( x, by, FUN , ...) {
+capply.default <- function ( x, by, FUN , ...) {
             if (inherits(by,'formula')) by <- model.frame( by , x , na.action = na.include)
             ret <- unsplit ( lapply ( split ( x , by ), FUN, ...), by )
             if ( !is.null( dim(ret)) && length(dim(ret)) ==1) ret <- c(ret)
             ret
-   }
+}
+
+
 
 ###
 ###   pchisq.mix
@@ -1975,22 +1949,22 @@ capply.data.frame ( dd, by, FUN, ...) uses unsplit - lapply - split
 
     cvar <- function( x, id ,... ) {
         help = "
-        cvar: creates contextual group mean variables within levels of 'id'.
-              If 'x' is a factor, 'cvar' returns a matrix labelled so that it
-              is consistent with labels generated for coding variables for 'x'.
-              Example:
-                
-                dd <- data.frame(x= 1:100, id = rep( LETTERS[1:10], each = 10))
-                dd$a <- factor(sample( c('a','b','c'), 100, replace = T))
-                dd$y <- dd$x + rep(rnorm(10), each = 10) + rnorm(100) + as.numeric(dd$a)
-                library(nlme)
-                fit <- lme( y ~ x + cvar(x,id), dd, random = ~ 1 + dvar(x,id) | id)
-                anova( fit , type = 'm')
-              
-              The output of 'anova' can be used to test whether a contextual effect
-              needs to be included in the model.
-              
-              See also: dvar for group-mean centering: x - cvar(x, id)
+        cvar: creates contextual group mean variables within levels of 'id'.\n
+              If 'x' is a factor, 'cvar' returns a matrix labelled so that it\n
+              is consistent with labels generated for coding variables for 'x'.\n
+              Example:\n
+               \n
+                dd <- data.frame(x= 1:100, id = rep( LETTERS[1:10], each = 10))\n
+                dd$a <- factor(sample( c('a','b','c'), 100, replace = T))\n
+                dd$y <- dd$x + rep(rnorm(10), each = 10) + rnorm(100) + as.numeric(dd$a)\n
+                library(nlme)\n
+                fit <- lme( y ~ x + cvar(x,id), dd, random = ~ 1 + dvar(x,id) | id)\n
+                anova( fit , type = 'm')\n
+                                        \n
+              The output of 'anova' can be used to test whether a contextual effect\n
+              needs to be included in the model.\n
+                                                \n
+              See also: dvar for group-mean centering: x - cvar(x, id)\n
         "
         UseMethod("cvar")
     }
@@ -2043,7 +2017,21 @@ capply.data.frame ( dd, by, FUN, ...) uses unsplit - lapply - split
             x - capply( x, id, mean, na.rm = T)
         }
     }
+
+##
+##  sum
+##
     
+cvars <- function(  x, by, ...) {
+      if ( length(x) == 1 && x == 1) {
+            n <- nrow(as.data.frame(by))
+            capply( rep(1,n), by, sum)
+      } else {
+            capply( x, by, sum, ...)
+      }
+}
+
+
 
 na20 <- function(x) {
      x[is.na(x)] <- 0
