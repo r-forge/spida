@@ -7,7 +7,7 @@
 \concept{measurement error}
 \docType{data}
 \title{
-Articial data set on Coffee Consumption, Heart Index and Stress
+Artifcial data set on Coffee Consumption, Heart Damage Index and Stress
 }
 \description{
 Artifical data on 20 subjects to illustrate issues of causality with observational data
@@ -26,9 +26,9 @@ Artifical data on 20 subjects to illustrate issues of causality with observation
 \details{
 %%  ~~ If necessary, more details than the __description__ above ~~
 }
-\source{
+%\source{
 %%  ~~ reference to a publication or URL from which the data were obtained ~~
-}
+%}
 \references{
 %%  ~~ possibly secondary sources and usages ~~
 }

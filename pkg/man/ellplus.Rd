@@ -6,7 +6,8 @@
 Ellipse with additional features
 }
 \description{
-Ellipse with additional features such as center, axes, subtending parallelogram.
+Calculates coordinates of an
+ellipse with additional features such as center, conjugate axes, subtending parallelogram.
 }
 \usage{
 ellplus(center = rep(0, 2), shape = diag(2), radius = 1, n = 100, angles = (0:n) * 2 * pi/n, fac = chol, ellipse = all, diameters = all, box = all, all = F)
@@ -14,60 +15,61 @@ ellplus(center = rep(0, 2), shape = diag(2), radius = 1, n = 100, angles = (0:n)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{center}{
-%%     ~~Describe \code{center} here~~
+X,Y location of the center of the ellipse
 }
   \item{shape}{
-%%     ~~Describe \code{shape} here~~
+A 2x2 matrix, typically a covariance matrix of data (for a data ellipse), or a
+covariance matrix of estimated parameters in a model (for a confidence ellipse).
 }
   \item{radius}{
-%%     ~~Describe \code{radius} here~~
+Radius of the ellipse-generating unit circle
 }
   \item{n}{
-%%     ~~Describe \code{n} here~~
+Number of points on the unit circle used to calculate the ellipse
 }
   \item{angles}{
-%%     ~~Describe \code{angles} here~~
+Angles around the unit circle used to calculate the ellipse
 }
   \item{fac}{
-%%     ~~Describe \code{fac} here~~
+A function defining the conjugate axes used to transform the unit circle
+into an ellipse.  
 }
   \item{ellipse}{
-%%     ~~Describe \code{ellipse} here~~
+Logical to indicate if the points on the ellipse should be returned
 }
   \item{diameters}{
-%%     ~~Describe \code{diameters} here~~
+Logical to indicate if the points defining the ends of the
+conjugate axes of the ellipse should be returned
 }
   \item{box}{
-%%     ~~Describe \code{box} here~~
+Logical to indicate if the points on the conjugate-axes bounding box should be returned
 }
   \item{all}{
-%%     ~~Describe \code{all} here~~
+Logical to request \code{ellipse}, \code{diameters} and \code{box}.
 }
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~
 }
 \value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
+Returns a 2-column matrix of (X,Y) coordinates suitable for drawing with
+\code{lines()}.  When more than one of the options \code{ellipse}, \code{diameters},
+and \code{box} is \code{TRUE}, the different parts are separated by a row of \code{NA}.
 }
-\references{
+%\references{
 %% ~put references to the literature/web site here ~
-}
+%}
 \author{
-%%  ~~who you are~~
+Georges Monette
 }
-\note{
+%\note{
 %%  ~~further notes~~
-}
+%}
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
+\code{\link{cell}}, \code{\link{dell}}, \code{\link{dellplus}}
 }
 \examples{
 ##---- Should be DIRECTLY executable !! ----
