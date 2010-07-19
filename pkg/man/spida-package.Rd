@@ -19,8 +19,8 @@ Misc: \tab  vif.lme; xqplot; tab; panel.subgroups (additional level of subgroups
 \tabular{ll}{
 Package: \tab spida\cr
 Type: \tab Package\cr
-Version: \tab 0.1\cr
-Date: \tab 2009-05-04\cr
+Version: \tab 0.1-1\cr
+Date: \tab 2010-07-19\cr
 License: \tab GPL (>= 2)\cr
 LazyLoad: \tab yes\cr
 }

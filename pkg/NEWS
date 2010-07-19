@@ -1,0 +1,6 @@
+Version 0.1
+	o Initial version on R-Forge
+
+Version 0.1-1 (07-19-2010)
+	o Fixed brace() for R
+	o Begin minor documentation changes

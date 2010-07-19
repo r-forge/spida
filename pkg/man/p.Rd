@@ -27,11 +27,11 @@ p(...)
 %%  \item{comp2 }{Description of 'comp2'}
 %% ...
 }
-\references{
+%\references{
 %% ~put references to the literature/web site here ~
-}
+%}
 \author{
-%%  ~~who you are~~
+Georges Monette
 }
 \note{
 %%  ~~further notes~~
@@ -53,5 +53,5 @@ paste(..., sep = "")
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{manip}
+%\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
