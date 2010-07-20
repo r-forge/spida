@@ -21,7 +21,8 @@ Coordinate of the initial point for the brace
 Coordinate of the final point for the brace
 }
   \item{right}{
-Logical to indicate if a vertical brace should have its' central point facing right
+Logical to indicate if a vertical brace should have its' central point facing right.
+If the brace is horizontal (\code{y1 == y2}), "right" means "down"
 }
   \item{rad}{
 Radius of the quarter circles used to draw the brace
@@ -46,7 +47,7 @@ Georges Monette, modified for R by Michael Friendly
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-\code{\link{lines}}, ~~~
+\code{\link[graphics]{lines}}, \code{\link[graphics]{arrows}}, ~~~
 }
 \examples{
 plot(c(-1,1), c(-1,1), type="n", xlab="x", ylab="y")

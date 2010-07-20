@@ -15,7 +15,7 @@ glh <- function( ...) wald( ...)    # previous name for 'wald' function
 
 
 wald <- function(fit, Llist = "",clevel=0.95, data = NULL, debug = FALSE , maxrows = 25,
-     full = FALSE, fixed = FALSE, invert = FALSE, method = 'svd', help = F) {
+     full = FALSE, fixed = FALSE, invert = FALSE, method = 'svd', help = FALSE) {
 if(help) {
 cat("
 wald:  General Linear Hypothesis with Wald test
@@ -374,9 +374,9 @@ help <- "
       L <- matrix( 0, nrow = nrow(Lsub), ncol = length( gg$fixed))
       rownames(L) <- rownames(data)
       colnames(L) <- names( gg$fixed)
-      Lpos <- Lsub[, colnames(Lsub) == '', drop = F]
+      Lpos <- Lsub[, colnames(Lsub) == '', drop = FALSE]
       # disp(Lpos)
-      Lnamed <- Lsub[ , colnames(Lsub) !='', drop  = F]
+      Lnamed <- Lsub[ , colnames(Lsub) !='', drop  = FALSE]
       # disp(Lnamed)
       for ( ip in seq_len( ncol( Lpos ))) L[,ip] <- Lpos[,ip]
       if ( ncol( Lnamed ) > 0 ) {
@@ -434,7 +434,7 @@ Lmat <- function(fit, pattern, fixed = FALSE, invert = FALSE, debug = FALSE) {
      ne <- names(fe)
      if (is.character(pattern)) {
         L.indices <- grep(pattern,names(fe))
-        ret <- diag( length(fe)) [L.indices,,drop = F]
+        ret <- diag( length(fe)) [L.indices,,drop = FALSE]
         if (debug) disp(ret)
         rownames(ret) <- names(fe) [L.indices]
         labs(ret) <- "Coefficients"
@@ -520,7 +520,7 @@ Lc <- function(fit, nam, ref = 1, verbose = 0) {
        ## "Works only if 'nam' is a factor and a main effect and model has Intercept?")
        if ( class(fit) != 'lmer' ) stop( "only implemented for lmer")
        L <- Lmu( fit, nam)
-       Lref <- L[ ref,,drop = F]
+       Lref <- L[ ref,,drop = FALSE]
        index <- 1:nrow(L)
        names(index) <- rownames(L)
        refind <- index[ref]

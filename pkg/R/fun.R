@@ -193,13 +193,13 @@ ConjComp <- function( X , Z = diag( nrow(X)) , ip = diag( nrow(X)), tol = 1e-07 
     
     xq <- qr(t(Z) %*% ip %*% X, tol = tol)
     if ( xq$rank == 0 ) return( Z )
-    a <- qr.Q( xq, complete = T ) [ ,-(1:xq$rank)]
+    a <- qr.Q( xq, complete = TRUE ) [ ,-(1:xq$rank)]
     Z %*% a
 }
 
 OrthoComp <- function (X, Z , tol = 1e-07) ConjComp( X, Z, tol = tol)
 
-oplot <- function( x, y, ..., verbose = T) {
+oplot <- function( x, y, ..., verbose = TRUE) {
     pat <- paste( x, y, sep = ",")
     keep <- !duplicated(pat)
     
@@ -570,7 +570,7 @@ function (mod)
 
 
 td <- function(
-    new = F,
+    new = FALSE,
     col=c("#0080ff",   "#ff00ff",   "darkgreen", "#ff0000" ,  "orange" ,   "#00ff00",   "brown" ),
     lty=1:7, lwd=1,
 	pch = 1:7, cex = 0.8, font = 1,
@@ -581,9 +581,9 @@ td <- function(
 	alpha.line = alpha,
 	alpha.symbol = alpha,
 	len = 7,
-	long = F,
-        record = FALSE,
-        basecol = NULL,
+	long = FALSE,
+    record = FALSE,
+    basecol = NULL,
 	colsets = c('plot.symbol','plot.line','dot.symbol',
 			'dot.line','cloud.3d','box.dot'),...) {
 
@@ -844,11 +844,11 @@ Modifications:
       }
       ll <- names(tt)
       nn <- length(ll)
-      if ( left.labs[ii] ) barplot( tt, horiz = T,
+      if ( left.labs[ii] ) barplot( tt, horiz = TRUE,
                                    xlab = xlab,
                                    cex.names = text.cex.factor * compute.cex(nn) )
       else {
-        zm <- barplot( tt, names = rep("",nn), horiz = T, xlab = xlab)
+        zm <- barplot( tt, names = rep("",nn), horiz = TRUE, xlab = xlab)
         ## If nn > maxlab drop labels for smaller frequencies
         sel <- rep( T, length(tt))
         tt.sorted <- rev(sort(tt))
@@ -874,8 +874,8 @@ Modifications:
       N <- length( vv )
       Ninfinite <- 0
       if ( any( is.infinite ( vv ) ) ){
-            n.pi <- sum( vv == Inf , na.rm = T)
-            n.ni <- sum( vv == -Inf, na.rm = T )
+            n.pi <- sum( vv == Inf , na.rm = TRUE)
+            n.ni <- sum( vv == -Inf, na.rm = TRUE )
             Ninfinite <- n.pi + n.ni
             vv <- vv[!is.infinite(vv)]
             sublab <- paste( sublab,"-Inf:",n.ni,"+Inf:",n.pi)
@@ -1002,7 +1002,7 @@ pals <- function(pp=30){
     ii <- 1
     while( ii < n ){
 
-        pal(cc[ii:min(ii+pp,n)], ask = T)
+        pal(cc[ii:min(ii+pp,n)], ask = TRUE)
         ii <- ii + pp + 1
     }
 }
@@ -1334,7 +1334,7 @@ ellplus <- function ( center = rep(0,2), shape = diag(2), radius = 1, n = 100,
                ellipse = all,
                diameters = all,
                box = all,
-               all = F) {
+               all = FALSE) {
         help <- "
         ellplus can produce, in addition to the points of an ellipse, the
         conjugate axes corresponding to a chol or other decomposition
@@ -1679,7 +1679,7 @@ help <- "
 vplot    - plots the columns of a 2 x n matrix or a vector of length 2
          - vplot adds to the current plot resizing it to include all plotted
            objects in a 'euclidean' frame
-         - to start a new plot, use 'new = T'
+         - to start a new plot, use 'new = TRUE'
          - to remove the last element added use 'vplot(pop=1)'
          Associated functions:
          - vell( mean, var) generates an ellipse, default = unit circle
@@ -1689,7 +1689,7 @@ vplot    - plots the columns of a 2 x n matrix or a vector of length 2
          - orthog.proj generates the matrix of an orthog. projection into span (x)
          - vmat( .... ) generates a 2 by n matrix
          Examples:
-           vplot( new = T )
+           vplot( new = TRUE )
            vplot( vell(), 'l' )
            vplot( cbind(c(3,1),c(1,4)) %*% vell())
            vplot( pop = 1)
@@ -1797,10 +1797,10 @@ help <- "
   This appears to be an ideal way of importing spss files in order
   to keep full variable names. Direct use of 'read.spss' on a SPSS
   '.sav' file abbreviates variable names to 8 characters.
-  Note: missing.type = T produces warnings.
+  Note: missing.type = TRUE produces warnings.
 "
            require("foreign")
-           #  dd <- read.dta(... , missing.type = T)  # Note: missing.type = T produces warnings.
+           #  dd <- read.dta(... , missing.type = TRUE)  # Note: missing.type = T produces warnings.
            dd <- read.dta(...)
            cls <- sapply(dd,class)
            ch.nams <- names(dd) [ cls == "character" ]
@@ -2345,7 +2345,7 @@ comp <- function(fit, form = terms(fit), varname, varpattern = "", data = getDat
      disp(dim(model.mat))
      ret <- data[rownames(model.mat),,drop = F]
      fe <- fixef(fit)
-     effect.names <- grep( varpattern, names(fe), value = T)
+     effect.names <- grep( varpattern, names(fe), value = TRUE)
      ret$comp <- c( model.mat[,effect.names] %*% fe[effect.names] )
      attr(ret,"predictors") <-  effect.names
      ret
@@ -2394,7 +2394,7 @@ comp <- function(fit, form = terms(fit), varname, varpattern = "", data = getDat
          #disp(dim(model.mat))
          # ret <- data[rownames(model.mat),,drop = F]
          fe <- fixef(fit)
-         effect.names <- grep( varpattern, names(fe), value = T)
+         effect.names <- grep( varpattern, names(fe), value = TRUE)
          ret <- c( model.mat[,effect.names] %*% fe[effect.names] )
          names(ret) <- rownames(model.mat)
          # return only components corresponding to fit$resid
@@ -2460,7 +2460,7 @@ print.correl <- function(x) {
 }
 
 
-glh.rdc <- function(fit, Llist, help = F, clevel = 0.95, debug = F) {
+glh.rdc <- function(fit, Llist, help = FALSE, clevel = 0.95, debug = FALSE) {
     if(help) {
          cat("help!!!")
          return(0)
@@ -2505,7 +2505,7 @@ glh.rdc <- function(fit, Llist, help = F, clevel = 0.95, debug = F) {
         denDF <- min(dfs[included.effects])
         numDF <- L.rank
 
-        ret.anova <- rbind(c(numDF, denDF, Fstat,Fstat2, pf(Fstat, numDF, denDF, lower.tail = F)))
+        ret.anova <- rbind(c(numDF, denDF, Fstat,Fstat2, pf(Fstat, numDF, denDF, lower.tail = FALSE)))
         colnames(ret.anova) <- c("numDF","denDF","F value","F2","Pr(>F)")
         rownames(ret.anova) <-  nam
         ret[[ii]]$anova <- ret.anova
@@ -2568,7 +2568,7 @@ formatCoefmat <- function(x ,digits = 6, pdigits = digits-1 ) {
      xx
 }
 
-print.glh.rdc <- function(x, round = 6, pround = round - 1, L  = T, cov = T, ...) {
+print.glh.rdc <- function(x, round = 6, pround = round - 1, L  = TRUE, cov = TRUE, ...) {
      # should round by SD, i.e. keep 3 sig digits for sd and others rounded accordingly
 
 
@@ -2599,7 +2599,7 @@ print.glh.rdc <- function(x, round = 6, pround = round - 1, L  = T, cov = T, ...
          #print(tret,quote=F)
          if(!is.null(zhead <- attr(tt,'heading'))) cat(zhead,"\n")
          print(formatCoefmat(te,digits=round,pdigits=pround),quote=F,right=T)
-         if (L == T ) {
+         if (L == TRUE ) {
             cat("\nL:\n")
             print(tt$L)
             if( dim(tt$L.full)[1] < dim(tt$L) [1]) {
@@ -2607,7 +2607,7 @@ print.glh.rdc <- function(x, round = 6, pround = round - 1, L  = T, cov = T, ...
              print(tt$L.full)
             }
          }
-         if ( cov == T ) {
+         if ( cov == TRUE ) {
             cat("\nVar-Cov of estimates:\n")
             print(tt$vcov)
             cat("\nCorrelations:\n")
@@ -2691,7 +2691,7 @@ enc <- function(x) {
 		tonum <- function(x) as.numeric(gsub(",","",as.character(x)))
 		ff <- function(x) format(x, big.mark=',')
 		tran.table <- scan(what=list('character','integer','character','character'),
-			flush = T)
+			flush = TRUE)
 		# Brief report
 		sam <- tonum(tran.table[[3]])
 		pop <- tonum(tran.table[[4]])
@@ -2699,7 +2699,7 @@ enc <- function(x) {
 		print( data.frame(
 			Code = tran.table[[2]], Content = tran.table[[1]], Sample = ff(sam), Popn = ff(pop),
 				Sampling.Pct = round(samp.pct,1))) 
-		tran( tran.table[[2]], tran.table[[1]], x , tofactor = T)
+		tran( tran.table[[2]], tran.table[[1]], x , tofactor = TRUE)
 	}
 
 apct <- function(x,MARGIN=1) {
@@ -2795,8 +2795,8 @@ write.sas <- function( df , datafile="G:/SAS/R2SAS.txt", codefile = "G:/SAS/R2SA
 	 
 if(F) { # current version in /R/coursefun.R
 td <- function( basecol = NULL, col = c(3,5,4,6,7,8,2), lty = 1:7,
-	lwd = 1, pch = 1:7, cex = 0.8, font = 1, len = 7, long = F,
-	new = F, record = T,  theme = col.whitebg,
+	lwd = 1, pch = 1:7, cex = 0.8, font = 1, len = 7, long = FALSE,
+	new = FALSE, record = TRUE,  theme = col.whitebg,
 	col.symbol = col, col.line = col,
 	colsets = c( "plot.symbol","plot.line", "dot.symbol","dot.line","cloud.3d","box.dot"),...) {
 	require(lattice)
@@ -3086,7 +3086,7 @@ Lag.0 <- function(x,id,idx,lag = 1,at= NULL, check=T) {
 	ret
 }
 
-Lag <- function(x, id = rep(1,length(x)), time = 1:length(x), lag=1, at = NULL, check = T, idx) {
+Lag <- function(x, id = rep(1,length(x)), time = 1:length(x), lag=1, at = NULL, check = TRUE, idx) {
    ## Takes approx. 30% of time of version Lag.0 on a small problem
   if (check) {
 		comb <- paste(id,time)
@@ -3291,7 +3291,7 @@ mergec <- function( ... ,vname = '.type',oname = ".order") {
         z[[ii]][,oname] <- 1:nr
 	}
 	ret <- z[[1]]
-	for ( ii in 2:length(z)) ret <- merge(ret,z[[ii]], all = T)
+	for ( ii in 2:length(z)) ret <- merge(ret,z[[ii]], all = TRUE)
 	ret [ order( ret[[vname]], ret[[oname]]),]
 }
 
@@ -3311,7 +3311,7 @@ if(F) {
 ###
 ###
 
-xmerge <- function(x, y, by , all = T, dropdots = F , verbose = F, debug = T, from = F, ... ) {
+xmerge <- function(x, y, by , all = TRUE, dropdots = FALSE , verbose = FALSE, debug = TRUE, from = FALSE, ... ) {
     help <-
 "This is a modification of merge that combines consistent variables
 even if not specified in 'by' to keep a common name.
@@ -3369,7 +3369,7 @@ even if not specified in 'by' to keep a common name.
     # compare two data frames, e.g. for merging
     x$FromX <-  1:nrow(x)
     y$FromY <- 1:nrow(y)
-    mm <- merge( x, y, by, all = T, ...)
+    mm <- merge( x, y, by, all = TRUE, ...)
     # names in both data frames
     newroots <- setdiff( intersect(names(x),names(y)), by)
 
@@ -3383,7 +3383,7 @@ even if not specified in 'by' to keep a common name.
     if(F){
         dotx <- grep("\\.x", names(mm), value =T)
         if ( verbose )print( c(dotx = dotx))
-        doty <- grep("\\.y", names(mm),value = T)
+        doty <- grep("\\.y", names(mm),value = TRUE)
         if ( verbose )print( c(doty = doty))
         rootx <- substring( dotx, 1, nchar(dotx) - 2 )
         rooty <- substring( doty, 1, nchar(doty) - 2 )
@@ -3470,7 +3470,7 @@ function( ... ,vname = '.which',oname = ".order") {
         Unique.factor <- function( x, ...) levels(x)
         Unique.default <- function( x, ...) unique(x)
         Maxp1 <- function( x ) {
-              mm <- max(c(0, as.numeric( as.character(x))), na.rm = T)
+              mm <- max(c(0, as.numeric( as.character(x))), na.rm = TRUE)
               ceiling( mm + 1)
         }
         z <- list(...)
@@ -3576,7 +3576,7 @@ long <- function ( data , varying=NULL , sep.varying = "\\.", v.names = names(Va
 
 constant <- function(x,...) UseMethod("constant")
 
-constant.default <- function(x, na.rm = F,...) {
+constant.default <- function(x, na.rm = FALSE,...) {
     if (na.rm) x <- na.omit(x)
     length(unique(x)) <= 1
 }
@@ -3620,7 +3620,7 @@ varLevel <- function(x, form, ...) {
         z[[1]] <- constant(x,...)
         for ( ii in 1:ncol(sel)) {
             idx <- paste(idx, as.character(sel[[ii]]), sep = ";")
-            z[[ii+1]] <- constant( x, idx, all = T,...)
+            z[[ii+1]] <- constant( x, idx, all = TRUE,...)
         }
         # print(z)
         ret <- do.call("rbind", z)
@@ -3630,7 +3630,7 @@ varLevel <- function(x, form, ...) {
 }
 
 if (FALSE) {
-        up <- function( dd, form , all = F, keep = ncol(sel) ) {
+        up <- function( dd, form , all = FALSE, keep = ncol(sel) ) {
                ##
                ## Replaced Nov 11, 2007  See below
 
@@ -3641,11 +3641,11 @@ if (FALSE) {
               ## with, e.g., capply
               sel <- model.frame( form , dd , na.action = na.include )
               if( !all) vl <- varLevel( dd, form ) else vl <- rep(0,ncol(dd))
-              dd [ na.omit(sapply( split( 1:nrow(dd), sel ), function(x) x[1])), vl < keep + 1, drop = F]
+              dd [ na.omit(sapply( split( 1:nrow(dd), sel ), function(x) x[1])), vl < keep + 1, drop = FALSE]
         }
 
 
-        up <- function( dd, form , all = F, keep = ncol(sel) ) {
+        up <- function( dd, form , all = FALSE, keep = ncol(sel) ) {
               ## Description:    (G. Monette, June 10, 2006)
               ## Creates a higher level data set by selecting first
               ## after ordering and keeping only invariant variables
@@ -3653,7 +3653,7 @@ if (FALSE) {
               ## with, e.g., capply
               #sel <- model.frame( form , dd , na.action = na.include )
               #if( !all) vl <- varLevel( dd, form ) else vl <- rep(0,ncol(dd))
-              #dd [ na.omit(sapply( split( 1:nrow(dd), sel ), function(x) x[1])), vl < keep + 1, drop = F]
+              #dd [ na.omit(sapply( split( 1:nrow(dd), sel ), function(x) x[1])), vl < keep + 1, drop = FALSE]
               require(nlme)
 
               gsummary( dd, form = form, invariantsOnly = ! all )
@@ -3677,11 +3677,11 @@ help <- "
                 
      Examples:
 
-          up( dd, ~ id, all = T)
+          up( dd, ~ id, all = TRUE)
           
      To plot summary panel:
 
-          ddu <- up( dd, ~ id, all = T)
+          ddu <- up( dd, ~ id, all = TRUE)
           ddu$id <- 'summary'
           xyplot( Y ~ X | id, rbind(dd,ddu),
                   panel = function( x, y, ...) {
@@ -3880,7 +3880,7 @@ val2na <- function( x, val) {
 # zf <- factor(c('a','a','b',NA,'c','a',NA))
 
 
-grepv <- function(...) grep( ..., value = T)
+grepv <- function(...) grep( ..., value = TRUE)
 
 # grepl <- function(pattern,x,...) match( 1:length(x) , grep(pattern,x,...), 0) >0
 
@@ -3922,7 +3922,7 @@ sasin <- function(file, tfile = tempfile() ) {
         if ( length(ll) == 3) return (ll[2])
         cat(ll[2],"\n" , file = tfile)
         for ( ii in 3:(length(ll)-1)) {
-            cat(ll[ii], "\n",file = tfile ,append = T)
+            cat(ll[ii], "\n",file = tfile ,append = TRUE)
         }
         df <- read.csv( tfile , header = F)
         if ( !any ( sapply( df, is.numeric ))) df <- read.csv(tfile)

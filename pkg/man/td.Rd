@@ -10,7 +10,7 @@ Designed to easily sets lattice parameters for multiple groups. Setting paramete
 before calling the lattice function allows parameters to be used consistently in the group key.
 }
 \usage{
-td(new = F, col = c("#0080ff", "#ff00ff", "darkgreen", "#ff0000", "orange", "#00ff00", "brown"), lty = 1:7, lwd = 1, pch = 1:7, cex = 0.8, font = 1, fill = "transparent", col.line = col, col.symbol = col, alpha = 1, alpha.line = alpha, alpha.symbol = alpha, len = 7, long = F, record = T, basecol = NULL, colsets = c("plot.symbol", "plot.line", "dot.symbol", "dot.line", "cloud.3d", "box.dot"), ...)
+td(new = FALSE, col = c("#0080ff", "#ff00ff", "darkgreen", "#ff0000", "orange", "#00ff00", "brown"), lty = 1:7, lwd = 1, pch = 1:7, cex = 0.8, font = 1, fill = "transparent", col.line = col, col.symbol = col, alpha = 1, alpha.line = alpha, alpha.symbol = alpha, len = 7, long = FALSE, record = FALSE, basecol = NULL, colsets = c("plot.symbol", "plot.line", "dot.symbol", "dot.line", "cloud.3d", "box.dot"), ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

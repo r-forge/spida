@@ -1,83 +1,119 @@
 \name{ell}
 \Rdversion{1.1}
 \alias{ell}
+\alias{ellplus}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Ellipse
+Calculate coordinates of an ellipse
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+\code{ell} is a utility function used to calculate the (X, Y) coordinates of a 2D ellipse
+for the purpose of drawing statistical diagrams and plots.
+
+\code{ellplus} can produce, in addition to the points of an ellipse, the
+conjugate axes corresponding to a \code{chol} or other decomposition
+and the surrounding parallelogram defined by these axes.
+
+
 }
 \usage{
 ell(center, shape, radius = 1, n = 100)
+
+ellplus(center = rep(0, 2), shape = diag(2), radius = 1, n = 100, angles = (0:n) * 2 * pi/n, fac = chol, ellipse = all, diameters = all, box = all, all = FALSE)
+
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{center}{
-%%     ~~Describe \code{center} here~~
+X,Y location of the center of the ellipse
 }
   \item{shape}{
-%%     ~~Describe \code{shape} here~~
+A 2x2 matrix, typically a covariance matrix of data (for a data ellipse), or a
+covariance matrix of estimated parameters in a model (for a confidence ellipse).
 }
   \item{radius}{
-%%     ~~Describe \code{radius} here~~
+Radius of the ellipse-generating unit circle.  The default, \code{radius=1}
+corresponds to a "standard" ellipse.
 }
   \item{n}{
-%%     ~~Describe \code{n} here~~
+Number of points on the unit circle used to calculate the ellipse
 }
+  \item{angles}{
+Angles around the unit circle used to calculate the ellipse
 }
-\details{
-%%  ~~ If necessary, more details than the description above ~~
+  \item{fac}{
+A function defining the conjugate axes used to transform the unit circle
+into an ellipse.  The default, \code{chol}, uses the right Cholesky factor
+of \code{shape}.
 }
+  \item{ellipse}{
+Logical to indicate if the points on the ellipse should be returned
+}
+  \item{diameters}{
+Logical to indicate if the points defining the ends of the
+conjugate axes of the ellipse should be returned
+}
+  \item{box}{
+Logical to indicate if the points on the conjugate-axes bounding box should be returned
+}
+  \item{all}{
+Logical to request all of \code{ellipse}, \code{diameters} and \code{box}.
+If \code{FALSE}, only the components specified separately by 
+\code{ellipse}, \code{diameters} and \code{box} are returned.
+}
+
+}
+%\details{
+%}
 \value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
+Returns a 2-column matrix of (X,Y) coordinates suitable for drawing with
+\code{lines()}.  
+
+For \code{ellplus}, when more than one of the options \code{ellipse}, \code{diameters},
+and \code{box} is \code{TRUE}, the different parts are separated by a row of \code{NA}.
 }
-\references{
+%\references{
 %% ~put references to the literature/web site here ~
-}
+%}
 \author{
-%%  ~~who you are~~
+Georges Monette
 }
-\note{
+%\note{
 %%  ~~further notes~~
-}
+%}
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
+\code{\link{cell}}, \code{\link{dell}}, \code{\link{dellplus}},
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
+plot( x=0,y=0, xlim = c(-3,3), ylim = c(-3,3),
+      xlab = '', ylab = '', type = 'n', asp=1)
+abline( v=0, col="gray")
+abline( h=0, col="gray")
+A <- cbind( c(1,2), c(1.5,1))
+W <- A \%*\% t(A)    
+    
+lines( ell(center=c(0,0), shape = W ), col = 'blue', lwd=3)
+lines( ellplus(center=c(0,0), shape = W, box=TRUE, diameters=TRUE ), col = 'red')
 
-## The function is currently defined as
-function (center, shape, radius = 1, n = 100) 
-{
-    fac <- function(x) {
-        xx <- svd(x)
-        t(xx$v) * sqrt(pmax(xx$d, 0))
-    }
-    angles = (0:n) * 2 * pi/n
-    if (length(radius) > 1) {
-        ret <- lapply(radius, function(r) rbind(r * cbind(cos(angles), 
-            sin(angles)), NA))
-        circle <- do.call(rbind, ret)
-    }
-    else circle = radius * cbind(cos(angles), sin(angles))
-    ret <- t(c(center) + t(circle \%*\% fac(shape)))
-    attr(ret, "parms") <- list(center = rbind(center), shape = shape, 
-        radius = radius)
-    class(ret) <- "ell"
-    ret
-  }
+# show conjugate axes for PCA factorization
+pca.fac <- function(x) {
+    xx <- svd(x)
+    ret <- t(xx$v) * sqrt(pmax( xx$d,0))
+    ret 
+}
+
+plot( x=0,y=0, xlim = c(-3,3), ylim = c(-3,3),
+      xlab = '', ylab = '', type = 'n', asp=1)
+abline( v=0, col="gray")
+abline( h=0, col="gray")
+lines( ell(center=c(0,0), shape = W ), col = 'blue', lwd=3)
+lines( ellplus(center=c(0,0), shape = W, box=TRUE, diameters=TRUE, fac=pca.fac ), col = 'red')
+
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{dplot}
+\keyword{aplot}% __ONLY ONE__ keyword per line
