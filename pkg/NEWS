@@ -4,6 +4,6 @@ Version 0.1
 Version 0.1-1 (07-19-2010)
 	o Fixed brace() for R
 	o Begin minor documentation changes
-	o Merged (ell.Rd, ellplus.Rd) -> ell.Rd
+	o Merged (ell.Rd, ellplus.Rd) -> ell.Rd; (dell.Rd, dellplus.Rd) -> dell.Rd
 	o Fix T/F -> TRUE/FALSE in wald.R, fun.R
 

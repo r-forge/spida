@@ -1,55 +1,70 @@
 \name{dell}
 \Rdversion{1.1}
 \alias{dell}
+\alias{dellplus}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Data ellipse
+Calculate coordinates of a data ellipse
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
+\code{dell} to calculates the coordinates of a 2D  data ellipse
+(concentration ellipse) from (X, Y) variables.
+
+\code{dellplus} can produce, in addition to the points of an ellipse, the
+conjugate axes corresponding to a \code{chol} or other decomposition
+and the surrounding parallelogram defined by these axes.
+
 }
 \usage{
 dell(x, y, radius = 1, ...)
+
+dellplus(x, y, ...)
+
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{x}{
-%%     ~~Describe \code{x} here~~
+  \item{x, y}{
+Either a two-column matrix or
+numeric vectors of the same length
 }
-  \item{y}{
-%%     ~~Describe \code{y} here~~
-}
+
   \item{radius}{
-%%     ~~Describe \code{radius} here~~
+Radius of the ellipse-generating unit circle.  The default, \code{radius=1}
+corresponds to a "standard" ellipse.
 }
   \item{\dots}{
-%%     ~~Describe \code{\dots} here~~
+Other arguments passed down to \code{ell} or \code{ellplus}.
 }
+
 }
+
 \details{
-%%  ~~ If necessary, more details than the description above ~~
+These functions simply calculate the mean vector and
+covariance matrix and call \code{ell} or \code{ellplus}.
 }
+
 \value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
+Returns a 2-column matrix of (X,Y) coordinates suitable for drawing with
+\code{lines()}.  
+
+For \code{dellplus}, when more than one of the options \code{ellipse}, \code{diameters},
+and \code{box} is \code{TRUE}, the different parts are separated by a row of \code{NA}.
 }
 \references{
 %% ~put references to the literature/web site here ~
 }
 \author{
-%%  ~~who you are~~
+Georges Monette
 }
-\note{
+%\note{
 %%  ~~further notes~~
-}
+%}
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
+\code{\link{cell}}, \code{\link{ell}}, \code{\link{ellplus}},
 }
 \examples{
 ##---- Should be DIRECTLY executable !! ----
@@ -69,5 +84,5 @@ function (x, y, radius = 1, ...)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{dplot}
+\keyword{aplot}% __ONLY ONE__ keyword per line
