@@ -86,7 +86,7 @@ General Linear Hypothesis with Wald test
 
 }
 \value{
-%%  ~Describe the value returned
+An object of class \code{wald}, with the following components
 %%  If it is a LIST, use
 %%  \item{comp1 }{Description of 'comp1'}
 %%  \item{comp2 }{Description of 'comp2'}
@@ -135,7 +135,7 @@ wald.dd <- as.data.frame(ww, se = 2)
 head( wald.dd )
 
 require(lattice)
-xyplot( coef + coefp + coefm ~ ses | Sex, dd,
+xyplot( coef + U2 + L2 ~ ses | Sex, wald.dd,
  main= 'Increase in predicted mathach per unit increase in ses')
 
 }
