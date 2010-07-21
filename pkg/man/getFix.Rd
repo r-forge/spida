@@ -1,60 +1,97 @@
 \name{getFix}
 \Rdversion{1.1}
 \alias{getFix}
+\alias{getFix.default}
+\alias{getFix.glm}
+\alias{getFix.glmer}
+\alias{getFix.lm}
+\alias{getFix.lme}
+\alias{getFix.lmer}
+\alias{getFix.mer}
+\alias{getFix.rdc}
+\alias{getFix.rdc.lm}
+\alias{getFix.rdc.lmer}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Get information on fixed effects of linear model
+Get information on fixed effects from a model object
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+\code{getFix} extracts coefficients, covariance matrix and degrees of
+freedom from model objects.
 }
 \usage{
+
 getFix(fit, ...)
+
+\method{getFix}{default}(fit, ...)
+
+\method{getFix}{glm}(fit, ...)
+
+\method{getFix}{glmer}(fit, ...)
+
+\method{getFix}{lm}(fit, ...)
+
+\method{getFix}{lme}(fit, ...)
+
+\method{getFix}{lmer}(fit, ...)
+
+\method{getFix}{mer}(fit, ...)
+
+\method{getFix}{rdc}(fit, ...)
+
+\method{getFix}{rdc.lm}(fit, ...)
+
+\method{getFix}{rdc.lmer}(fit, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
+
   \item{fit}{
-%%     ~~Describe \code{fit} here~~
+A fitted model object
 }
   \item{\dots}{
-%%     ~~Describe \code{\dots} here~~
+Other arguments [unused]
 }
+
+
 }
-\details{
+%\details{
 %%  ~~ If necessary, more details than the description above ~~
-}
+%}
 \value{
-%%  ~Describe the value returned
+Returns a list with the following components:
 %%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
+\item{fixed}{Fixed effect parameter estimates}
+\item{vcov}{Covariance matrix of the parameters}
+\item{df}{degrees of freedom for each effect}
 %% ...
 }
-\references{
-%% ~put references to the literature/web site here ~
-}
+%\references{
+%%% ~put references to the literature/web site here ~
+%}
 \author{
-%%  ~~who you are~~
+Georges Monette
 }
-\note{
-%%  ~~further notes~~
-}
+%\note{
+%%%  ~~further notes~~
+%}
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
+\code{\link{wald}}
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
+fit <- lme( mathach ~ (ses + I(ses^2)) * Sex, hs, random = ~ 1 + ses| school)
+getFix(fit)
 
-## The function is currently defined as
-function (fit, ...) 
-UseMethod("getFix")
+data(Prestige, package="car")
+mod.prestige <- lm(prestige ~ education + income, data=Prestige)
+getFix(mod.prestige)
+
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{manip}
+\keyword{models}% __ONLY ONE__ keyword per line
+       

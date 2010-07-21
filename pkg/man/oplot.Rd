@@ -9,7 +9,7 @@ Indicate number of points overplotted
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-oplot(x, y, ..., verbose = T)
+oplot(x, y, ..., verbose = TRUE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

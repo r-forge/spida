@@ -111,7 +111,7 @@ wald:  General Linear Hypothesis with Wald test
                }
                ## Delete coefficients that are NA
                Ldata <- attr( L , 'data')
-               L <- L[, !is.na(beta),drop = F]
+               L <- L[, !is.na(beta),drop = FALSE]
                attr(L,'data') <- Ldata
                beta <- beta[ !is.na(beta) ]
                
@@ -123,7 +123,7 @@ wald:  General Linear Hypothesis with Wald test
                    #L.rank <- attr(Qqr,'rank')
                    #L.miss <- attr(Qqr,'miss')
                    if(debug)disp( t( qr.Q(qqr)))
-                   L.full <- t(qr.Q(qqr))[ 1:L.rank,,drop=F]
+                   L.full <- t(qr.Q(qqr))[ 1:L.rank,,drop=FALSE]
                    #L.full <- t(Qqr[!L.miss,])[ 1:L.rank,,drop=F]
                } else if ( method == 'svd' ) {
                    if(debug)disp( t(na.omit(t(L))))
@@ -163,12 +163,12 @@ wald:  General Linear Hypothesis with Wald test
                vv <-  L.full %*% vc %*% t(L.full)
                eta.hat <- L.full %*% beta
                Fstat <- (t(eta.hat) %*% qr.solve(vv,eta.hat,tol=1e-10)) / L.rank
-               included.effects <- apply(L,2,function(x) sum(abs(x),na.rm=T)) != 0
+               included.effects <- apply(L,2,function(x) sum(abs(x),na.rm=TRUE)) != 0
                denDF <- min( dfs[included.effects])
                numDF <- L.rank
                ret[[ii]]$anova <- list(numDF = numDF, denDF = denDF,
                                "F-value" = Fstat,
-                               "p-value" = pf(Fstat, numDF, denDF, lower.tail = F))
+                               "p-value" = pf(Fstat, numDF, denDF, lower.tail = FALSE))
                ## Estimate
                etahat <- L %*% beta
                if( nrow(L) <= maxrows ) {
@@ -185,7 +185,7 @@ wald:  General Linear Hypothesis with Wald test
                    Std.Error = etasd,
                    DF = denDF,
                    "t-value" = c(etahat/etasd),
-                   "p-value" = 2*pt(abs(etahat/etasd), denDF, lower.tail =F))
+                   "p-value" = 2*pt(abs(etahat/etasd), denDF, lower.tail =FALSE))
                 colnames(aod)[ncol(aod)] <- 'p-value'
              if (debug ) {
                 cat("\n\naod::::::::::::::::::\n")
@@ -304,11 +304,11 @@ coef.wald <- function( obj , se = FALSE ) {
 
 ###  getFix: function designed to be used internally to get coef, var(coef) and df.resid
 
-getFix.rdc <- function(fit) UseMethod("getFix")
+getFix.rdc <- function(fit, ...) UseMethod("getFix")
 
-getFix.default <- function(fit) stop("not yet implemented")
+getFix.default <- function(fit, ...) stop("not yet implemented")
 
-getFix.rdc.lmer <- function(fit) {
+getFix.rdc.lmer <- function(fit, ...) {
             ret <- list()
             ret$fixed <- fixef(fit)
             ret$vcov <- vcov(fit)
@@ -316,7 +316,7 @@ getFix.rdc.lmer <- function(fit) {
             ret
 }
 
-getFix.rdc.lm <- function(fit) {
+getFix.rdc.lm <- function(fit, ...) {
           ret <- list()
           ret$fixed <- coef(fit)
           ret$vcov <- vcov(fit)

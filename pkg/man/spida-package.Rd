@@ -219,12 +219,16 @@ Recent Changes:
 Georges Monette <georges@yorku.ca>
 }
 \references{
-~~ Literature or other references for background information ~~
+Monette, G. (1990).
+Geometry of Multiple Regression and Interactive 3-D Graphics.
+In Fox, J. & Long, S. (ed.) 
+\emph{Modern Methods of Data Analysis}, Sage Publications, 209-256.
+
 }
 \keyword{ package }
 \seealso{
-~~ Optional links to other man pages, e.g. ~~
-~~ \code{\link[<pkg>:<pkg>-package]{<pkg>}} ~~
+%~~ Optional links to other man pages, e.g. ~~
+\code{\link[nlme]{lme}} ~~
 }
 \examples{
 ~~ simple examples of the most important functions ~~

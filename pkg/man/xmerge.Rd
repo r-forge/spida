@@ -6,18 +6,17 @@
 Extended merge with diagnostics
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+Extended merge with diagnostics.
+This is a modification of \code{merge} that combines consistent variables
+even if not specified in 'by' to keep a common name.
 }
 \usage{
-xmerge(x, y, by, all = T, dropdots = F, verbose = F, debug = T, from = F, ...)
+xmerge(x, y, by, all = TRUE, dropdots = FALSE, verbose = FALSE, debug = TRUE, from = FALSE, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{x}{
-%%     ~~Describe \code{x} here~~
-}
-  \item{y}{
-%%     ~~Describe \code{y} here~~
+  \item{x, y}{
+data frames, or objects to be coerced to one
 }
   \item{by}{
 %%     ~~Describe \code{by} here~~
@@ -51,20 +50,20 @@ xmerge(x, y, by, all = T, dropdots = F, verbose = F, debug = T, from = F, ...)
 %%  \item{comp2 }{Description of 'comp2'}
 %% ...
 }
-\references{
-%% ~put references to the literature/web site here ~
-}
+%\references{
+%%% ~put references to the literature/web site here ~
+%}
 \author{
-%%  ~~who you are~~
+Georges Monette
 }
-\note{
-%%  ~~further notes~~
-}
+%\note{
+%%%  ~~further notes~~
+%}
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
+\code{\link[base]{merge}}
 }
 \examples{
 ##---- Should be DIRECTLY executable !! ----

@@ -13,7 +13,7 @@ A number of tools are available to facilitate the generation of hypothesis matri
 }
 \usage{
 wald(fit, Llist = "", clevel = 0.95, data = NULL, debug = FALSE, maxrows = 25,
-full = FALSE, fixed = FALSE, invert = FALSE, method = "svd", help = F)
+full = FALSE, fixed = FALSE, invert = FALSE, method = "svd", help = FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

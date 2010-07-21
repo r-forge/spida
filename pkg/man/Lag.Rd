@@ -9,7 +9,7 @@ Lag with respect to time within id
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-Lag(x, id = rep(1, length(x)), time = 1:length(x), lag = 1, at = NULL, check = T, idx)
+Lag(x, id = rep(1, length(x)), time = 1:length(x), lag = 1, at = NULL, check = TRUE, idx)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

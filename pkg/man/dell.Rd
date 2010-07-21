@@ -52,7 +52,11 @@ For \code{dellplus}, when more than one of the options \code{ellipse}, \code{dia
 and \code{box} is \code{TRUE}, the different parts are separated by a row of \code{NA}.
 }
 \references{
-%% ~put references to the literature/web site here ~
+Monette, G. (1990).
+Geometry of Multiple Regression and Interactive 3-D Graphics.
+In Fox, J. & Long, S. (ed.) 
+\emph{Modern Methods of Data Analysis}, Sage Publications, 209-256.
+
 }
 \author{
 Georges Monette
@@ -67,20 +71,16 @@ Georges Monette
 \code{\link{cell}}, \code{\link{ell}}, \code{\link{ellplus}},
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
+data(Prestige)   # from car
+attach(Prestige)
+fit.simple <- lm( prestige ~ education, Prestige)
 
-## The function is currently defined as
-function (x, y, radius = 1, ...) 
-{
-    if ((is.matrix(x) && (ncol(x) > 1)) || is.data.frame(x)) 
-        mat <- as.matrix(x[, 1:2])
-    else if (is.list(x)) 
-        mat <- cbind(x$x, x$y)
-    else mat <- cbind(x, y)
-    ell(apply(mat, 2, mean), var(mat), radius = radius, ...)
-  }
+plot(prestige ~ education, type='p')
+lines(dell(education, prestige), col="blue", lwd=3)
+lines(bbox <- dellplus(education, prestige, box=TRUE))
+lines(dellplus(education, prestige, diameter=TRUE, radius=2), col="gray")
+detach(Prestige)
+
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

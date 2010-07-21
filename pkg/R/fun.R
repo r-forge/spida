@@ -400,7 +400,7 @@ Vcor <- function(fit) {
 
 
 na2f <- function(x)  {
-    x[is.na(x)] <- F
+    x[is.na(x)] <- FALSE
     x
 }
 

@@ -1,15 +1,19 @@
 \name{abind}
 \Rdversion{1.1}
 \alias{abind}
+\alias{abind.rdc}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Bind comformable arrays
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+Bind comformable arrays
 }
 \usage{
 abind(arr1, arr2, d, facename = "")
+
+bind.rdc(arr1, arr2, d, facename = "")
+
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -21,14 +25,15 @@ second array
 }
   \item{d}{
 dimension along which arr1 and arr2 are joined, or, if the \code{length(dim(arr1)) == length(dim(arr2)) + 1}
-the dimension in arr1 that is exended by arr2.
+the dimension in arr1 that is extended by arr2.
 }
   \item{facename}{
-%%     ~~Describe \code{facename} here~~
+Name for the new array dimension
 }
 }
 \details{
-abind binds two conformable arrays along a dimension.
+\code{abind} binds two conformable arrays along a dimension.
+\code{abind.rdc} is a version used in the RDC.
 
 dim( arr1 ) and dim( arr2 ) must be equal except in the dth dimension.
 If the length of dim( arr2 ) is 1 less than that of dim( arr1 ), then
@@ -42,20 +47,20 @@ If length(dim(arr2)) == length(dim(arr1)) - 1, then arr2 is treated as if
 it dropped a dimension of size 1 in the dth dimension. 'facename' is used
 as the name of the dimnames list for this dimension.
 }
-\references{
-%% ~put references to the literature/web site here ~
-}
+%\references{
+%%% ~put references to the literature/web site here ~
+%}
 \author{
-%%  ~~who you are~~
+Georges Monette
 }
-\note{
-%%  ~~further notes~~
-}
+%\note{
+%%%  ~~further notes~~
+%}
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
+\code{\link[base]{aperm}}, to permute arrays
 }
 \examples{
 ##---- Should be DIRECTLY executable !! ----
@@ -107,5 +112,5 @@ function (arr1, arr2, d, facename = "")
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{manip}
+\keyword{array}% __ONLY ONE__ keyword per line

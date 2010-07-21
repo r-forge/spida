@@ -10,7 +10,7 @@ Default method to test whether a variable is constant
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-constant.default(x, na.rm = F, ...)
+constant.default(x, na.rm = FALSE, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
