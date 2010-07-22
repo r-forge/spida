@@ -2,7 +2,7 @@
 ### From spida-test
 ###
 
-# Problem: tab not showing NaNs
+pab <- function(...) tab(...,total.margins = FALSE)
 
 tab <- function(x,...) UseMethod('tab')
 

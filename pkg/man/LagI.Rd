@@ -1,6 +1,7 @@
 \name{LagI}
 \Rdversion{1.1}
 \alias{LagI}
+\alias{cLagI}
 \title{
 Lag with respect to time within id with interpolation for non-integer time
 }
@@ -8,7 +9,7 @@ Lag with respect to time within id with interpolation for non-integer time
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-LagI(x, id, time, lag = 1, delta = 0.01, check = T)
+cLagI(x, id, time, lag = 1, delta = 0.01, check = T)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

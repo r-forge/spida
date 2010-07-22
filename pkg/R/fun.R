@@ -2,7 +2,12 @@
 
 "
 LOG OF CHANGES:
+
+
 2010:
+   Jul 21: renames Lag and LagI, cLag and cLagI respectively avoid conflicts
+           with Hmisc::Lag.  Lag and and LagI are kept as aliases.
+   Jun 16: Added non-ordered version of reorder.factor
    Jan 30: Added cvars
 
 2009:
@@ -3086,7 +3091,9 @@ Lag.0 <- function(x,id,idx,lag = 1,at= NULL, check=T) {
 	ret
 }
 
-Lag <- function(x, id = rep(1,length(x)), time = 1:length(x), lag=1, at = NULL, check = TRUE, idx) {
+
+cLag <- function(x, id = rep(1,length(x)), time = 1:length(x), lag=1, at = NULL, check = T, idx) {
+   # renamed cLag to avoid conflict with Hmisc::Lag
    ## Takes approx. 30% of time of version Lag.0 on a small problem
   if (check) {
 		comb <- paste(id,time)
@@ -3098,7 +3105,9 @@ Lag <- function(x, id = rep(1,length(x)), time = 1:length(x), lag=1, at = NULL, 
   retnn <- if(is.null(at)) paste(id,time - lag,sep='::')  else paste(id,at,sep="::")
   ret [ retnn ]
 }
-  
+
+Lag <- cLag # historical name that conflicts with Hmisc
+
  if(F) {
 ## small test of Lag
 zx <- c(2,3,2,4,2,4, 5,3,4,5,7,8,9)
@@ -3107,7 +3116,8 @@ cbind( zid, zx, Lag(zx,zid,zx))
 }
 
 
-LagI <- function(x,id,time,lag=1,delta=.01,check=T) {
+cLagI <- function(x,id,time,lag=1,delta=.01,check=T) {
+    # renamed from LagI to avoid conflict with Hmisc
 	# lags by intrapolating 
 	# with complete data at each value of index, this does the same thing
 	# as Lag
@@ -3143,9 +3153,13 @@ LagI <- function(x,id,time,lag=1,delta=.01,check=T) {
 	ret
 }
 
-DiffI <- function(xx,...) {
+LagI <- cLagI
+
+cDiffI <- function(xx,...) {
 	xx - LagI(xx,...)
 }
+
+DiffI <- cDiffI
 
 # tt <- c(1,2,3,1,2,3,1,2,3)
 # xx <- c(1,2,3,1,2,3,1,2,3)
@@ -4446,7 +4460,13 @@ if (FALSE) {
 
 
 
+reorder.factor <- function (x, v, FUN = mean, ...) {
 
+      # Hmisc returns an ordered factor,
+      # This returns the same as its input
+      if ( inherits(x,'ordered')) ordered(x, levels(x)[order(tapply(v, x, FUN, ...))])
+      else factor(x, levels(x)[order(tapply(v, x, FUN, ...))])
+}
 
 
 

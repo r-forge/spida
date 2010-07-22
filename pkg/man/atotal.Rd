@@ -3,7 +3,7 @@
 \alias{atotal}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Add marginal sums to an array
+Add all marginal sums to an array
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
@@ -49,6 +49,8 @@ atotal(arr, FUN = sum, label = "Total", ...)
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
+\code{\link{tab}},
+\code{\link{acond}}
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
