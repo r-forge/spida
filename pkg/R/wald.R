@@ -1,14 +1,11 @@
 
+## wald.R
+## This a collection of functions designed to facilitate testing hypotheses
+## with Wald tests.
+## The methods are readily extended to any fitting method that returns a vector
+## of estimated parameters and an estimated variance matrix.
+## Extensions are implemented through the 'getFix' generic function.
 
-# number of ideas here: it would be nice to be able to estimate derivative
-# easily at a number of places: ie. have the coefficients in each position be
-# functions of the data base. So evaluate an L matrix from  data with a formula
-# for each coefficient. Then it's easy to calculate errors
-#  NOW: Lform does this
-#
-# 2) calculate errors for each element but do the vcov matrix only if it's not
-#    to large
-#
 
 glh <- function( ...) wald( ...)    # previous name for 'wald' function
 
@@ -485,6 +482,36 @@ Ldiff.rdc <- function( fit, nam , ref = "no longer used") {
 }
 
 
+
+Ldiff <- function( fit, pat, levnames = c(reflevel,substring(rownames(L),cut+1)),
+         reflevel ="<ref>", cut=nchar(pat),verbose=F) {
+      L <- Lmat(fit, paste("^",pat,sep=""))
+      nam <- rownames(L)
+      n <- nrow(L)
+      zm <- matrix(1:n,nrow=n,ncol=n)
+      plus <- zm[ col(zm) < row(zm)]
+      minus <- rep(1:(n-1), (n-1):1)
+      Lp <- L[plus,]
+      Lm <- L[minus,]
+      Lret <- rbind( L, Lp - Lm)
+         pnames <- levnames [ c(1:n, plus) +1]
+      mnames <- levnames [ c(rep(0,n), minus) + 1]
+      if (verbose) {
+        print(levnames)
+        print(plus)
+        print(minus)
+        print(Lp)
+        print(Lm)
+        print(L)
+        print(Lret)
+        print(pnames)
+        print(mnames)
+      }
+      rn <- paste( levnames[ c(1:n,plus)+1], levnames[ c(rep(0,n),minus) + 1], sep = " - ")
+      rownames(Lret) <- rn
+      Lret
+}
+ 
 
 
 Lmu <- function(fit, nam, verbose = 0) {

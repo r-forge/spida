@@ -2,9 +2,11 @@
 
 "
 LOG OF CHANGES:
-
-
 2010:
+   Aug 13: removed obsolete version of Lmat in fun.R superceded by version in 
+           wald.R  
+           Ldiff moved to wald.R
+           TODO: clean up other wald and eventually spline stuff
    Jul 21: renames Lag and LagI, cLag and cLagI respectively avoid conflicts
            with Hmisc::Lag.  Lag and and LagI are kept as aliases.
    Jun 16: Added non-ordered version of reorder.factor
@@ -286,53 +288,6 @@ function( df, by, ...) {
 ##   print.glh
 ##
 
-Lmat <- function( fit, pat, ... ) {
-     if ( is.character(fit)) {
-          x <- fit
-          fit <- pat
-          pat <- x
-     }
-     # generates L matrix for anova(fit, L = ...) with all terms
-     # containing a pattern
-     gf <- getFix(fit)
-     fe <- gf$fixed
-     if( is.matrix(fe)) fe <- fe[,1]  # assume an mlm model
-     L.indices <- grep(pat, names(fe))
-     ret <- diag(length(fe))[ L.indices,]
-     rownames(ret) <- names(fe) [L.indices]
-     ret
-}
-
-
-Ldiff <- function( fit, pat, levnames = c(reflevel,substring(rownames(L),cut+1)),
-         reflevel ="<ref>", cut=nchar(pat),verbose=F) {
-      L <- Lmat(fit, paste("^",pat,sep=""))
-      nam <- rownames(L)
-      n <- nrow(L)
-      zm <- matrix(1:n,nrow=n,ncol=n)
-      plus <- zm[ col(zm) < row(zm)]
-      minus <- rep(1:(n-1), (n-1):1)
-      Lp <- L[plus,]
-      Lm <- L[minus,]
-      Lret <- rbind( L, Lp - Lm)
-         pnames <- levnames [ c(1:n, plus) +1]
-      mnames <- levnames [ c(rep(0,n), minus) + 1]
-      if (verbose) {
-        print(levnames)
-        print(plus)
-        print(minus)
-        print(Lp)
-        print(Lm)
-        print(L)
-        print(Lret)
-        print(pnames)
-        print(mnames)
-      }
-      rn <- paste( levnames[ c(1:n,plus)+1], levnames[ c(rep(0,n),minus) + 1], sep = " - ")
-      rownames(Lret) <- rn
-      Lret
-}
- 
 
 getFix <- function(fit,...) UseMethod("getFix")
 
