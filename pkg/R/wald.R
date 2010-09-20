@@ -57,8 +57,20 @@ wald:  General Linear Hypothesis with Wald test
 " )
  return(invisible(NULL))
  }
+ 
         if (full ) return( wald ( fit, model.matrix(fit)))
-
+          dataf <- function(x,...) {
+           x <- cbind(x)
+           rn <- rownames(x)
+           if( length( unique(rn)) < length(rn)) rownames(x) <- NULL
+           data.frame(x,...)
+         }
+     as.dataf <- function(x,...) {
+           x <- cbind(x)
+           rn <- rownames(x)
+           if( length( unique(rn)) < length(rn)) rownames(x) <- NULL
+           as.data.frame(x,...)
+         }
 
            unique.rownames <- function(x) {
                 ret <- c(tapply(1:length(x), x , function(xx) {
@@ -143,15 +155,10 @@ wald:  General Linear Hypothesis with Wald test
 
 
                if (debug && method == "qr") {
-                  cat("\nqr(L)::::::::::\n")
-                  print(qqr)
-                  cat("\nL.full:::::::::\n")
-                  print(dim(L.full))
-                  print(L.full)
-                  cat("\nvc:::::::::::\n")
-                  print(dim(vc))
-                  print(vc)
-
+                  disp(qqr)
+                  disp(dim(L.full))
+                  disp(dim(vc))
+                  disp(vc)
                }
 
                if (debug) disp(L.full)
@@ -184,10 +191,7 @@ wald:  General Linear Hypothesis with Wald test
                    "t-value" = c(etahat/etasd),
                    "p-value" = 2*pt(abs(etahat/etasd), denDF, lower.tail =FALSE))
                 colnames(aod)[ncol(aod)] <- 'p-value'
-             if (debug ) {
-                cat("\n\naod::::::::::::::::::\n")
-                print(aod)
-             }
+             if (debug ) disp(aod)
              if ( !is.null(clevel) ) {
                 #print(aod)
                 #print(aod[,'DF'])
@@ -196,16 +200,14 @@ wald:  General Linear Hypothesis with Wald test
                  #print(hw)
                  aod <- cbind( aod, LL = aod[,"Estimate"] - hw, UL = aod[,"Estimate"] + hw)
                  #print(aod)
-                 if (debug ) {
-                    cat("\ncolnames::::::::::\n")
-                    print(colnames(aod))
-                 }
+                 if (debug ) disp(colnames(aod))
                  labs <- paste(c("Lower","Upper"), format(clevel))
                  colnames(aod) [ ncol(aod) + c(-1,0)] <- labs
              }
-             aod <- as.data.frame(aod)
+             if (debug ) disp(rownames(aod))
+             aod <- as.dataf(aod)
 
-             rownames(aod) <- rownames(as.data.frame(L))
+             rownames(aod) <- rownames(as.dataf(L))
              labs(aod) <- names(dimnames(L))[1]
              ret[[ii]]$estimate <- aod
              ret[[ii]]$coef <- c(etahat)
@@ -255,8 +257,14 @@ print.wald <- function(x,round = 6, pround = 5,...) {
         invisible(x)
 }
 
-
 as.data.frame.wald <- function( obj, se , digits = 3 , sep = "" , which = 1 ) {
+# modified by GM 2010_09_20 to avoid problems with coefs with duplicate rownames
+         dataf <- function(x,...) {
+           x <- cbind(x)
+           rn <- rownames(x)
+           if( length( unique(rn)) < length(rn)) rownames(x) <- NULL
+           data.frame(x,...)
+         }
          obj = obj [which]
          if ( length(obj) == 1) {
 
