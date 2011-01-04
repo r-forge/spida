@@ -8,4 +8,6 @@ Version 0.1-1 (07-19-2010)
 	o Fix T/F -> TRUE/FALSE in wald.R, fun.R
 	o Fix getFix.* as S3 methods; merged all getFix.*.Rd -> getFix.Rd
 
+Changes: (01-03-2011)
+	o Added 'gicc' for generalized ICC for multilevel data
 

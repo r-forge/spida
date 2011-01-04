@@ -1617,8 +1617,8 @@ diags.lm <- function(x, y, ..., ask, labels = names(residuals(x)), showlabs = te
 	invisible(0)
 }
 
-model.matrix.lme <- function( fit ,...)
-                 naresid( fit$na.action, model.matrix( formula(fit), fit$data))
+model.matrix.lme <- function( fit , data = fit$data, ...)
+                 naresid( fit$na.action, model.matrix( formula(fit)[-2], data = data ,...))
 
 diags.lme <- function( ... ) cat("Being implemented")
 
@@ -2940,38 +2940,7 @@ atotal.rdc <- function( arr, FUN = sum, name = "Total",...) {
 	ret
 }
 
-aprop <- function( x, MARGIN = NULL ) {
-	debug <- F
-	## written 05 05 03: conditional proportions given a margin
-	## like atotal but summing to 1 on selected margin
-	x <- atotal(x)
-	if ( is.null (MARGIN ) ) return( x / x[length(x)])
-	# divide through by appropriate marginal total
-	d <- dim(x)
-	if (debug ) { cat("dim(x)\n"); print(d)}
-	dn <- dimnames(x)
-	if (debug ) { cat("dimnames(x)\n"); print(dn)}
-
-	n <- length(d)
-	m <- length(MARGIN)
-	perm <- c( MARGIN, setdiff( 1:n, MARGIN))
-	perm.inverse <- order(perm)
-	if (debug ) print(perm)
-	if (debug ) print(perm.inverse)
-	x <- aperm( x, perm)
-	d <- dim(x)
-	zl <- list(x)
-	for ( ii in 1:length(d)) zl[[ii+1]] <- seq( if(ii<=m) 1 else d[ii], d[ii])
-	tots <- do.call("[",zl)
-	ret <- array( c(x) / c(tots), dim = d)
-	ret <- aperm( ret, perm.inverse)
-	if(debug) print( dim(ret))
-	if(debug) print( dn)
-	dimnames(ret) <- dn
-	ret
-}
-
-acond <- aprop    # old names
+# aprop and acond moved to tab.R
 
 ###
 ###  Utility functions for regression
