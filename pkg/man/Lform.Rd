@@ -64,6 +64,7 @@ Lform(fit, form, data = model.frame(fit))
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
+\dontrun{
       library(car)
       mod <- lm( income ~ (education + I(education^2) )* type, Prestige)
       summary(mod)
@@ -83,6 +84,7 @@ Lform(fit, form, data = model.frame(fit))
       head( ytderiv )
       xyplot( coef ~ education, ytderiv, groups = type, type = 'l',
               auto.key = list(columns = 3, lines = TRUE, points = FALSE)
+}
 }
 \keyword{ ~kwd1 }
 \keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
