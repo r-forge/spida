@@ -1741,6 +1741,7 @@ trim in fun.R
   }
   trim.character <- function( x ) {
       x[] <- sub(" +$", "", x )
+      x[] <- sub("^ +", "", x )
       x
   }
   trim.default <- function(x) x

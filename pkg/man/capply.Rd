@@ -1,6 +1,7 @@
 \name{capply}
 \Rdversion{1.1}
 \alias{capply}
+\alias{capply.default}
 \alias{cvar}
 \alias{cvars}
 \alias{dvar}
